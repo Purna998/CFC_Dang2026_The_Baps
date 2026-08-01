@@ -3,4 +3,51 @@ name = "eemp-api-gateway"
 version.workspace = true
 edition.workspace = true
 
+[[bin]]
+name = "api-gateway"
+path = "src/main.rs"
+
 [dependencies]
+# Web framework
+axum = { workspace = true }
+tokio = { workspace = true, features = ["full"] }
+tower = { workspace = true }
+tower-http = { workspace = true, features = ["cors", "trace", "request-id", "util"] }
+
+# Serialization
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+# Database
+sqlx = { workspace = true }
+
+# Redis
+redis = { workspace = true }
+
+# Validation
+validator = { workspace = true }
+
+# Error handling
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+
+# Tracing
+tracing = { workspace = true }
+
+# Utilities
+chrono = { workspace = true }
+uuid = { workspace = true }
+
+# HTTP client
+reqwest = { version = "0.12", features = ["json"] }
+
+# Rate limiting
+governor = "0.6"
+
+# Internal dependencies
+eemp-domain = { path = "../../shared/domain" }
+eemp-error = { path = "../../shared/error" }
+eemp-config = { path = "../../shared/config" }
+eemp-database = { path = "../../shared/database" }
+eemp-observability = { path = "../../shared/observability" }
+eemp-auth-service = { path = "../auth-service" }

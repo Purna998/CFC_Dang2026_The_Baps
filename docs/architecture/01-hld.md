@@ -83,7 +83,6 @@ EEMP architecture follows these core philosophies:
 - Observable (logs, metrics, traces)
 - Debuggable (correlation IDs, structured logging)
 - Recoverable (automated backups, disaster recovery)
-
 ---
 
 ## 2. Architecture Principles
