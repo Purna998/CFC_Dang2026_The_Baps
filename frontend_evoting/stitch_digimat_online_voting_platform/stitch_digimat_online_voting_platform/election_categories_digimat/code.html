@@ -1,0 +1,346 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Election Categories | DIGIMAT</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "warning-gold": "#D99A21",
+                    "on-tertiary-fixed-variant": "#005233",
+                    "surface-container-low": "#f2f4f7",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#d8dadd",
+                    "on-secondary-fixed": "#410008",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#fffbff",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#b4c6f4",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-container": "#2c9969",
+                    "on-primary-container": "#7687b2",
+                    "dark-red": "#9F172B",
+                    "deep-navy": "#06152F",
+                    "outline": "#75777f",
+                    "on-primary-fixed-variant": "#34466d",
+                    "inverse-on-surface": "#eff1f4",
+                    "secondary-fixed": "#ffdad9",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed": "#8ff7bf",
+                    "surface-bright": "#f7f9fc",
+                    "error": "#ba1a1a",
+                    "background": "#f7f9fc",
+                    "secondary-container": "#dc2f42",
+                    "outline-variant": "#c5c6cf",
+                    "on-secondary-fixed-variant": "#920020",
+                    "error-container": "#ffdad6",
+                    "border-gray": "#DDE4EC",
+                    "secondary": "#b80d2d",
+                    "primary-fixed-dim": "#b4c6f4",
+                    "on-primary-fixed": "#041a3f",
+                    "secondary-fixed-dim": "#ffb3b2",
+                    "on-tertiary-fixed": "#002112",
+                    "surface-variant": "#e0e3e6",
+                    "on-surface-variant": "#44464e",
+                    "surface": "#f7f9fc",
+                    "tertiary-fixed-dim": "#73daa4",
+                    "surface-container-high": "#e6e8eb",
+                    "on-surface": "#191c1e",
+                    "soft-blue-bg": "#EEF3F9",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#2d3133",
+                    "surface-container": "#eceef1",
+                    "surface-tint": "#4c5e86",
+                    "tertiary": "#000b04",
+                    "tertiary-container": "#002615",
+                    "primary-fixed": "#d9e2ff",
+                    "primary": "#00081e",
+                    "primary-container": "#0a1f44",
+                    "surface-container-highest": "#e0e3e6",
+                    "on-background": "#191c1e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "container-max": "1280px",
+                    "gutter": "24px",
+                    "margin-desktop": "48px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "receipt-code": ["JetBrains Mono"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "label-caps": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-xl": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "receipt-code": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+        }
+        .institutional-border {
+            border: 1px solid #DDE4EC;
+        }
+        .official-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        .transition-standard {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest border-b border-border-gray sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-10">
+<img src="https://lh3.googleusercontent.com/aida/AP1WRLsg1uTZcASHvJR4ywcokKR0QXhnxYdev71OLUMsNTEePDI108XGHjRwUshCUJDyhQKp-ZR0CTs_ipxia55W0c4qZqaLEOmk62bmHnYJdjtDqXEhzWss5-GTon9FMmLu2jFODRiTMckge8MPaMBzrHgn9s6wyhV9PV0uj5C5R1lDR7pvY-QzqHH7ajGXnYKXO4m8LqMxRgLAHQwkOftACpGHjrH5iTp1m_NxjvPEZwk8Yu_7BeUUgZI6H27y" alt="DIGIMAT Logo" class="h-8 w-auto object-contain">
+<nav class="hidden md:flex items-center gap-8"><a class="text-on-surface-variant font-label-caps hover:text-primary transition-colors" href="#">Home</a><a class="text-on-surface-variant font-label-caps hover:text-primary transition-colors" href="#">Features</a><div class="relative group cursor-pointer flex items-center gap-1 text-primary font-bold border-b-2 border-primary py-1"><span class="font-label-caps">Categories</span><span class="material-symbols-outlined text-sm" data-icon="expand_more">expand_more</span></div><a class="text-on-surface-variant font-label-caps hover:text-primary transition-colors" href="#">Results</a><a class="text-on-surface-variant font-label-caps hover:text-primary transition-colors" href="#">Help</a></nav>
+</div>
+<div class="flex items-center gap-4"><div class="flex items-center gap-2 text-on-surface-variant hover:text-primary cursor-pointer transition-standard"><span class="material-symbols-outlined text-sm" data-icon="language">language</span><span class="font-label-caps">EN / नेपाली</span></div><button class="px-6 py-2 border border-border-gray text-primary font-label-caps rounded-lg hover:bg-surface-container-low transition-standard">Sign In</button><button class="px-6 py-2 bg-primary text-on-primary font-label-caps rounded-lg hover:opacity-90 transition-standard shadow-sm">Request Demo</button></div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-desktop py-16">
+<!-- Header Section -->
+<div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div class="max-w-2xl">
+<h1 class="font-headline-xl text-headline-xl text-primary mb-4">Election Categories</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Browse secure electoral processes by institutional sector. DIGIMAT provides specialized infrastructures for different governance needs.</p>
+</div>
+<!-- Search Bar -->
+<div class="relative w-full md:w-96 group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors" data-icon="search">search</span>
+<input class="w-full pl-12 pr-4 py-3 bg-white border border-border-gray rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-standard shadow-sm font-body-md" placeholder="Search categories..." type="text">
+</div>
+</div>
+<!-- Categories Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Category Card 1 -->
+<div class="group bg-white border border-border-gray rounded-xl p-8 flex flex-col hover:border-primary/40 hover:shadow-lg transition-standard">
+<div class="w-14 h-14 bg-soft-blue-bg rounded-lg flex items-center justify-center mb-6 group-hover:scale-105 transition-standard">
+<span class="material-symbols-outlined text-primary text-[32px]" data-icon="account_balance">account_balance</span>
+</div>
+<div class="flex justify-between items-start mb-3">
+<h3 class="font-headline-md text-headline-md text-primary">Governments</h3>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full font-label-caps text-[10px]">12 Active</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-8 flex-grow">National, regional, and local government elections, including referendums and legislative appointments.</p>
+<div class="flex items-center justify-between mt-auto pt-6 border-t border-border-gray/50">
+<span class="text-secondary font-label-caps flex items-center gap-2 group-hover:translate-x-2 transition-standard cursor-pointer">
+                        View Category <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</span>
+</div>
+</div>
+<!-- Category Card 2 -->
+<div class="group bg-white border border-border-gray rounded-xl p-8 flex flex-col hover:border-primary/40 hover:shadow-lg transition-standard">
+<div class="w-14 h-14 bg-soft-blue-bg rounded-lg flex items-center justify-center mb-6 group-hover:scale-105 transition-standard">
+<span class="material-symbols-outlined text-primary text-[32px]" data-icon="groups">groups</span>
+</div>
+<div class="flex justify-between items-start mb-3">
+<h3 class="font-headline-md text-headline-md text-primary">Professional Associations</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-8 flex-grow">Board elections, policy voting, and leadership appointments for societies and licensing bodies.</p>
+<div class="flex items-center justify-between mt-auto pt-6 border-t border-border-gray/50">
+<span class="text-secondary font-label-caps flex items-center gap-2 group-hover:translate-x-2 transition-standard cursor-pointer">
+                        View Category <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</span>
+</div>
+</div>
+<!-- Category Card 3 -->
+<div class="group bg-white border border-border-gray rounded-xl p-8 flex flex-col hover:border-primary/40 hover:shadow-lg transition-standard">
+<div class="w-14 h-14 bg-soft-blue-bg rounded-lg flex items-center justify-center mb-6 group-hover:scale-105 transition-standard">
+<span class="material-symbols-outlined text-primary text-[32px]" data-icon="school">school</span>
+</div>
+<div class="flex justify-between items-start mb-3">
+<h3 class="font-headline-md text-headline-md text-primary">Education</h3>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full font-label-caps text-[10px]">4 Active</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-8 flex-grow">Student unions, faculty senates, and university governance council elections with high participant volume.</p>
+<div class="flex items-center justify-between mt-auto pt-6 border-t border-border-gray/50">
+<span class="text-secondary font-label-caps flex items-center gap-2 group-hover:translate-x-2 transition-standard cursor-pointer">
+                        View Category <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</span>
+</div>
+</div>
+<!-- Category Card 4 -->
+<div class="group bg-white border border-border-gray rounded-xl p-8 flex flex-col hover:border-primary/40 hover:shadow-lg transition-standard">
+<div class="w-14 h-14 bg-soft-blue-bg rounded-lg flex items-center justify-center mb-6 group-hover:scale-105 transition-standard">
+<span class="material-symbols-outlined text-primary text-[32px]" data-icon="corporate_fare">corporate_fare</span>
+</div>
+<div class="flex justify-between items-start mb-3">
+<h3 class="font-headline-md text-headline-md text-primary">Corporate &amp; Shareholder</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-8 flex-grow">Weighted shareholder voting, board of directors elections, and major corporate resolution ballots.</p>
+<div class="flex items-center justify-between mt-auto pt-6 border-t border-border-gray/50">
+<span class="text-secondary font-label-caps flex items-center gap-2 group-hover:translate-x-2 transition-standard cursor-pointer">
+                        View Category <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</span>
+</div>
+</div>
+<!-- Category Card 5 -->
+<div class="group bg-white border border-border-gray rounded-xl p-8 flex flex-col hover:border-primary/40 hover:shadow-lg transition-standard">
+<div class="w-14 h-14 bg-soft-blue-bg rounded-lg flex items-center justify-center mb-6 group-hover:scale-105 transition-standard">
+<span class="material-symbols-outlined text-primary text-[32px]" data-icon="how_to_reg">how_to_reg</span>
+</div>
+<div class="flex justify-between items-start mb-3">
+<h3 class="font-headline-md text-headline-md text-primary">Unions</h3>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full font-label-caps text-[10px]">8 Active</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-8 flex-grow">Collective bargaining agreements, officer elections, and industrial action strike authorization votes.</p>
+<div class="flex items-center justify-between mt-auto pt-6 border-t border-border-gray/50">
+<span class="text-secondary font-label-caps flex items-center gap-2 group-hover:translate-x-2 transition-standard cursor-pointer">
+                        View Category <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</span>
+</div>
+</div>
+<!-- Category Card 6 -->
+<div class="group bg-white border border-border-gray rounded-xl p-8 flex flex-col hover:border-primary/40 hover:shadow-lg transition-standard">
+<div class="w-14 h-14 bg-soft-blue-bg rounded-lg flex items-center justify-center mb-6 group-hover:scale-105 transition-standard">
+<span class="material-symbols-outlined text-primary text-[32px]" data-icon="payments">payments</span>
+</div>
+<div class="flex justify-between items-start mb-3">
+<h3 class="font-headline-md text-headline-md text-primary">Cooperatives</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-8 flex-grow">Credit union board elections, profit-sharing distribution votes, and member-owner resolution ballots.</p>
+<div class="flex items-center justify-between mt-auto pt-6 border-t border-border-gray/50">
+<span class="text-secondary font-label-caps flex items-center gap-2 group-hover:translate-x-2 transition-standard cursor-pointer">
+                        View Category <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Sector Reference Section -->
+<section class="mt-24 bg-primary-container rounded-2xl overflow-hidden shadow-xl">
+<div class="flex flex-col md:flex-row">
+<div class="md:w-1/2 p-12 lg:p-16 flex flex-col justify-center">
+<h2 class="font-headline-lg text-headline-lg text-on-primary mb-6">Omni-Channel Integration</h2>
+<p class="font-body-lg text-body-lg text-on-primary-container mb-8">DIGIMAT sectors are designed to support a multi-platform voting experience, ensuring high turnout through accessibility.</p>
+<ul class="space-y-4">
+<li class="flex items-center gap-4 text-white">
+<span class="material-symbols-outlined bg-secondary p-2 rounded-lg" data-icon="smartphone">smartphone</span>
+<span class="font-body-md">Secure Mobile App Voting</span>
+</li>
+<li class="flex items-center gap-4 text-white">
+<span class="material-symbols-outlined bg-secondary p-2 rounded-lg" data-icon="laptop_mac">laptop_mac</span>
+<span class="font-body-md">Desktop Browser Interface</span>
+</li>
+<li class="flex items-center gap-4 text-white">
+<span class="material-symbols-outlined bg-secondary p-2 rounded-lg" data-icon="mail">mail</span>
+<span class="font-body-md">Postal Integration APIs</span>
+</li>
+</ul>
+<button class="mt-10 w-fit px-8 py-4 bg-secondary text-on-secondary font-label-caps rounded-xl hover:opacity-90 transition-standard shadow-lg">Learn About Integrations</button>
+</div>
+<div class="md:w-1/2 h-[400px] md:h-auto">
+<div class="w-full h-full bg-cover bg-center grayscale contrast-125 opacity-80 mix-blend-screen" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCipsH2XfdcP08IpJJfNOz6BlYehhHFnXrekuimmRgpe5a0Bdjxu6_Y4LV0le7sPYwpW6Y1U9CJy3RbcRkeHviPlGfhXQRL3kxVo2cL46GC6F7EL8PzrUVN0_pED0IzI-kll0FnI6dwGjtYdZy64Plq8-txtZxFRZWQxjrmZXp9fmD9CO83fKoTCWjGpUzid5_HTRaqvSckI_FJwMncm4E3R2lFNXzqTVHrdyCyac0pNkbJlHjsjwPvcGnTohSfDl9LwKE')"></div>
+</div>
+</div>
+</section>
+<!-- Newsletter / CTA -->
+<section class="mt-24 text-center max-w-3xl mx-auto">
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Don't see your sector?</h3>
+<p class="font-body-md text-on-surface-variant mb-8">Our electoral engine is highly configurable. We can build custom workflows for specific institutional needs, ensuring compliance with local laws and organizational bylaws.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="px-8 py-3 bg-primary text-on-primary rounded-lg font-label-caps shadow-md hover:scale-105 transition-standard">Contact Sales</button>
+<button class="px-8 py-3 border border-border-gray text-primary rounded-lg font-label-caps hover:bg-white transition-standard">View Documentation</button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-high border-t border-border-gray mt-24">
+<div class="w-full py-12 px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<span class="font-headline-md text-headline-md text-primary block mb-4">DIGIMAT</span>
+<p class="font-body-sm text-on-surface-variant mb-6">Providing secure, transparent, and institutionally verified electoral infrastructure for a modern Nepal.</p>
+</div>
+<div>
+<h4 class="font-label-caps text-primary mb-6">RESOURCES</h4>
+<ul class="space-y-4">
+<li class=""><a class="text-on-surface-variant font-body-sm hover:text-secondary transition-colors" href="#">For Voters</a></li>
+<li class=""><a class="text-on-surface-variant font-body-sm hover:text-secondary transition-colors" href="#">For Organizations</a></li>
+<li class=""><a class="text-on-surface-variant font-body-sm hover:text-secondary transition-colors" href="#">Audit Procedures</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-primary mb-6">COMPANY</h4>
+<ul class="space-y-4">
+<li class=""><a class="text-on-surface-variant font-body-sm hover:text-secondary transition-colors" href="#">About Us</a></li>
+<li class=""><a class="text-on-surface-variant font-body-sm hover:text-secondary transition-colors" href="#">Security Standards</a></li>
+<li class=""><a class="text-on-surface-variant font-body-sm hover:text-secondary transition-colors" href="#">Press Kit</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-primary mb-6">LEGAL</h4>
+<ul class="space-y-4">
+<li class=""><a class="text-on-surface-variant font-body-sm hover:text-secondary transition-colors" href="#">Privacy Policy</a></li>
+<li class=""><a class="text-on-surface-variant font-body-sm hover:text-secondary transition-colors" href="#">Terms of Service</a></li>
+<li class=""><a class="text-on-surface-variant font-body-sm hover:text-secondary transition-colors" href="#">Election Bylaws</a></li>
+</ul>
+</div>
+</div>
+<div class="w-full border-t border-border-gray py-6 px-margin-desktop max-w-container-max mx-auto flex justify-between items-center">
+<span class="font-body-sm text-on-surface-variant">© 2024 DIGIMAT. Secure Electoral Infrastructure of Nepal.</span>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="facebook">qr_code_2</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="public">public</span>
+</div>
+</div>
+</footer>
+<script>
+        // Simple search filter interaction
+        const searchInput = document.querySelector('input[type="text"]');
+        const cards = document.querySelectorAll('.group.bg-white');
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const desc = card.querySelector('p').textContent.toLowerCase();
+                if (title.includes(query) || desc.includes(query)) {
+                    card.style.display = 'flex';
+                    card.style.opacity = '1';
+                } else {
+                    card.style.display = 'none';
+                    card.style.opacity = '0';
+                }
+            });
+        });
+    </script>
+
+
+</body></html>

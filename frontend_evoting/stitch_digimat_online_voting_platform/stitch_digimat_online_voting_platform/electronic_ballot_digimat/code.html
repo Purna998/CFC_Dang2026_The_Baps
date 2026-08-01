@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DIGIMAT - Electronic Ballot</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-high": "#e6e8eb",
+                      "border-gray": "#DDE4EC",
+                      "on-tertiary": "#ffffff",
+                      "primary": "#00081e",
+                      "on-primary-container": "#7687b2",
+                      "on-surface-variant": "#44464e",
+                      "on-tertiary-fixed": "#002112",
+                      "secondary-container": "#dc2f42",
+                      "inverse-surface": "#2d3133",
+                      "outline": "#75777f",
+                      "surface-tint": "#4c5e86",
+                      "surface-variant": "#e0e3e6",
+                      "surface-container": "#eceef1",
+                      "surface-bright": "#f7f9fc",
+                      "on-secondary-fixed-variant": "#920020",
+                      "primary-container": "#0a1f44",
+                      "background": "#f7f9fc",
+                      "inverse-primary": "#b4c6f4",
+                      "surface-container-highest": "#e0e3e6",
+                      "surface": "#f7f9fc",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed-variant": "#34466d",
+                      "surface-container-low": "#f2f4f7",
+                      "on-error": "#ffffff",
+                      "on-tertiary-container": "#2c9969",
+                      "warning-gold": "#D99A21",
+                      "surface-dim": "#d8dadd",
+                      "soft-blue-bg": "#EEF3F9",
+                      "error": "#ba1a1a",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "tertiary-container": "#002615",
+                      "dark-red": "#9F172B",
+                      "on-surface": "#191c1e",
+                      "on-primary-fixed": "#041a3f",
+                      "deep-navy": "#06152F",
+                      "outline-variant": "#c5c6cf",
+                      "secondary-fixed-dim": "#ffb3b2",
+                      "inverse-on-surface": "#eff1f4",
+                      "on-tertiary-fixed-variant": "#005233",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed-dim": "#73daa4",
+                      "error-container": "#ffdad6",
+                      "on-secondary-container": "#fffbff",
+                      "tertiary": "#000b04",
+                      "primary-fixed": "#d9e2ff",
+                      "on-secondary-fixed": "#410008",
+                      "primary-fixed-dim": "#b4c6f4",
+                      "tertiary-fixed": "#8ff7bf",
+                      "secondary-fixed": "#ffdad9",
+                      "secondary": "#b80d2d",
+                      "on-background": "#191c1e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "margin-desktop": "48px",
+                      "margin-mobile": "16px",
+                      "container-max": "1280px",
+                      "unit": "8px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-md": ["Plus Jakarta Sans"],
+                      "headline-xl": ["Plus Jakarta Sans"],
+                      "receipt-code": ["JetBrains Mono"],
+                      "headline-lg-mobile": ["Plus Jakarta Sans"],
+                      "body-sm": ["Inter"],
+                      "label-caps": ["Inter"],
+                      "headline-lg": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "receipt-code": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-step {
+            @apply border-secondary bg-secondary text-on-secondary;
+        }
+        .inactive-step {
+            @apply border-border-gray bg-surface-container-low text-on-surface-variant;
+        }
+        .completed-step {
+            @apply border-primary bg-primary text-on-primary;
+        }
+        .card-selected {
+            @apply border-primary ring-2 ring-primary bg-soft-blue-bg;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        /* Focus state accessibility */
+        button:focus, a:focus, input:focus {
+            outline: 2px solid #00081e;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- Top Navigation Header -->
+<header class="bg-surface-container-lowest sticky top-0 z-50 border-b border-border-gray h-20 flex items-center">
+<div class="px-margin-desktop max-w-container-max mx-auto w-full flex justify-between items-center">
+<div class="flex items-center gap-4">
+<img alt="DIGIMAT Logo" class="h-10 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2bBJ885iLrPQg4w945TrKhXWo0m5HD-2dCoLhyLlffmAyJHcLrN5GkTUTfPG8cbhqIdfUEaayuhFUiCF7rVNXGhrCzX7PiwXEnqzFkEOt5o5PHEaRr9RF_x2RSnc7KraH9KdP1Y7HQNJ_hl3rPiri48Vp-jZihogqVnnP4g-gDbMT-0fQrgJxyms-kkSGXtmCDayvI-IJBPm64kwzRF20QVrtd68Fh2hvOtqsyN4lqiCMxyK652eZsA"/>
+<div class="h-8 w-[1px] bg-border-gray"></div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-primary leading-tight">DIGIMAT</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Election Commission of Nepal</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button aria-label="Language Selector" class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors px-4 py-2 rounded-lg font-label-caps text-label-caps">
+<span class="material-symbols-outlined" data-icon="language">language</span>
+                    ENGLISH / नेपाली
+                </button>
+<button class="bg-dark-red text-on-primary px-6 py-2 rounded font-label-caps text-label-caps hover:bg-secondary transition-all active:scale-95" onclick="confirmCancel()">
+                    Cancel Voting
+                </button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow py-12 px-margin-desktop">
+<div class="max-w-[1000px] mx-auto">
+<!-- Distraction-free Progress Stepper -->
+<nav aria-label="Voting Progress" class="mb-12">
+<div class="flex items-center justify-between relative">
+<!-- Progress Line Background -->
+<div class="absolute top-1/2 left-0 w-full h-[2px] bg-border-gray -z-10 -translate-y-1/2"></div>
+<!-- Steps -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full border-2 flex items-center justify-center font-bold transition-all completed-step">
+<span class="material-symbols-outlined text-sm" data-icon="check" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Instructions</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-12 h-12 rounded-full border-2 flex items-center justify-center font-bold transition-all active-step shadow-lg">
+                            2
+                        </div>
+<span class="font-label-caps text-label-caps text-primary font-bold">Select</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full border-2 flex items-center justify-center font-bold transition-all inactive-step">
+                            3
+                        </div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Review</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full border-2 flex items-center justify-center font-bold transition-all inactive-step">
+                            4
+                        </div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Confirm</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full border-2 flex items-center justify-center font-bold transition-all inactive-step">
+                            5
+                        </div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Submit</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full border-2 flex items-center justify-center font-bold transition-all inactive-step">
+                            6
+                        </div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Receipt</span>
+</div>
+</div>
+</nav>
+<!-- Election Header Area -->
+<div class="text-center mb-10">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-2">Member of the House of Representatives</h1>
+<p class="font-body-md text-on-surface-variant max-w-2xl mx-auto">
+                    Kaski District, Constituency No. 2. Please select <strong class="text-primary">one (1)</strong> candidate from the list below. Your selection will be highlighted before you proceed.
+                </p>
+<div class="mt-4 inline-flex items-center gap-2 bg-surface-container-high px-4 py-1.5 rounded-full text-secondary font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[18px]" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
+                    SECURE END-TO-END ENCRYPTED SESSION
+                </div>
+</div>
+<!-- Candidate Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter mb-12">
+<!-- Candidate Card 1 -->
+<div class="group relative bg-surface-container-lowest border border-border-gray rounded-xl overflow-hidden transition-all hover:shadow-md cursor-pointer" onclick="selectCandidate(this, 'candidate_1')">
+<div class="p-4 border-b border-border-gray flex items-center justify-between bg-surface-container-low">
+<span class="font-label-caps text-label-caps text-on-surface-variant">BALLOT #01</span>
+<input class="w-6 h-6 text-primary border-border-gray focus:ring-primary" id="candidate_1" name="candidate" type="radio"/>
+</div>
+<div class="p-6 flex flex-col items-center text-center">
+<div class="w-32 h-32 rounded-full overflow-hidden mb-4 border-4 border-white shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a middle-aged Nepalese politician wearing a traditional Dhaka Topi and a dark formal suit. The background is a soft neutral grey with clean, studio-style lighting emphasizing authority and trustworthiness. High-contrast detail consistent with a secure institutional UI design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwB9Qx1ckWAhTk2cIP_I26uSukhyCmmrob9zdOSUOo3qUFALnrfANbIANELEyC92A5PTY5L5mHVGnRYPqAiJcqsayM5t1tBHmoNVqkE-DSIxHY7qaPrab0EnPv5201xVtF0hrbxf_K2w_SzdgoAIl1ANW31niWUuvhKL7j4KKqNE9KOimIMng8MzY3zY0YCxvlSnBv1u84eOYUpbokQ5VemIOjH8G4YxErzeM4dNxooghlIps9ahCetg"/>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-1">Ramesh Bahadur Karki</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Communist Party of Nepal (UML)</p>
+<div class="w-full bg-white border border-border-gray rounded-lg p-4 flex items-center justify-center gap-4 group-hover:bg-soft-blue-bg transition-colors">
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="sunny">sunny</span>
+<div class="text-left">
+<p class="font-label-caps text-[10px] text-on-surface-variant">OFFICIAL SYMBOL</p>
+<p class="font-body-md font-bold text-primary">Sun (Surya)</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Candidate Card 2 -->
+<div class="group relative bg-surface-container-lowest border border-border-gray rounded-xl overflow-hidden transition-all hover:shadow-md cursor-pointer" onclick="selectCandidate(this, 'candidate_2')">
+<div class="p-4 border-b border-border-gray flex items-center justify-between bg-surface-container-low">
+<span class="font-label-caps text-label-caps text-on-surface-variant">BALLOT #02</span>
+<input class="w-6 h-6 text-primary border-border-gray focus:ring-primary" id="candidate_2" name="candidate" type="radio"/>
+</div>
+<div class="p-6 flex flex-col items-center text-center">
+<div class="w-32 h-32 rounded-full overflow-hidden mb-4 border-4 border-white shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a younger Nepalese female political candidate with a friendly expression, wearing a vibrant blue sari. The lighting is bright and modern, set against a minimalist architectural background that suggests a forward-thinking, clean corporate aesthetic. High resolution and institutional quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDATz1Mj2N60ogE06tRDh7fUl8IIFRiuFQXFEiwUT4oNtJqzXpmldrvF8tb5VGtTaO2h_t7HZpaTHrFomn-b-xeYE0rpH1ZNiomT7emVByBkGjMilEzUJZRHXUDFKdugaKXv-InHp_QPmvtD8zPcDxEl5cgcuuqru6GUB3bPRDpAeBRTYJ6yZIAcGs2W3knrreQYUT6wRo6hWPtEREtSujlamEz3MUmEnnSDyPCxd42FiL3_DwtRwkeeg"/>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-1">Sita Maya Gurung</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Nepali Congress</p>
+<div class="w-full bg-white border border-border-gray rounded-lg p-4 flex items-center justify-center gap-4 group-hover:bg-soft-blue-bg transition-colors">
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="tree">mobile_arrow_up_right</span>
+<div class="text-left">
+<p class="font-label-caps text-[10px] text-on-surface-variant">OFFICIAL SYMBOL</p>
+<p class="font-body-md font-bold text-primary">Tree (Rukh)</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Candidate Card 3 -->
+<div class="group relative bg-surface-container-lowest border border-border-gray rounded-xl overflow-hidden transition-all hover:shadow-md cursor-pointer" onclick="selectCandidate(this, 'candidate_3')">
+<div class="p-4 border-b border-border-gray flex items-center justify-between bg-surface-container-low">
+<span class="font-label-caps text-label-caps text-on-surface-variant">BALLOT #03</span>
+<input class="w-6 h-6 text-primary border-border-gray focus:ring-primary" id="candidate_3" name="candidate" type="radio"/>
+</div>
+<div class="p-6 flex flex-col items-center text-center">
+<div class="w-32 h-32 rounded-full overflow-hidden mb-4 border-4 border-white shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A portrait of a male independent candidate in his early 60s, looking serious and professional. He is wearing a dark grey vest over a light shirt. The background is slightly blurred outdoor mountain scenery in Nepal, suggesting regional connectivity. Soft, natural daylighting for a government-grade election portal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqA86KUytEzZ2HhA8wadNF7emF1LoczDN-zTOmAmRR66ypMu1KvuQepY9jJYsA_05GkaFnKzTGpjn0EJRNrKyN9PzM-jmuFWGY0e4v9RkDneIKpNRrLZ2r6BaXNFsXr2wZ_ynj3bE_wF0efiqGI4ibOqpEjkDOckCcoqSuwfJjRaIgi8H6HShbR86DSGcJpH_heKDcg6LUPuJhLbdwCoA0Wxk6kGFW5JagwquY4y08Bnp4Aa2ZHBm87Q"/>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-1">Prakash Raj Thapa</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Independent</p>
+<div class="w-full bg-white border border-border-gray rounded-lg p-4 flex items-center justify-center gap-4 group-hover:bg-soft-blue-bg transition-colors">
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="directions_bike">directions_bike</span>
+<div class="text-left">
+<p class="font-label-caps text-[10px] text-on-surface-variant">OFFICIAL SYMBOL</p>
+<p class="font-body-md font-bold text-primary">Bicycle (Cycle)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Controls -->
+<div class="flex items-center justify-between pt-8 border-t border-border-gray mt-8">
+<button class="flex items-center gap-2 border border-primary text-primary px-8 py-4 rounded font-bold hover:bg-surface-container-high transition-all active:scale-95" onclick="history.back()">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+                    GO BACK
+                </button>
+<div class="flex items-center gap-6">
+<div class="hidden animate-pulse flex items-center gap-2 text-primary font-bold" id="selection-status">
+<span class="material-symbols-outlined text-green-600" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Candidate Selected
+                    </div>
+<button class="bg-primary text-on-primary px-12 py-4 rounded font-bold opacity-50 cursor-not-allowed hover:bg-primary-container transition-all shadow-lg active:scale-95 flex items-center gap-2" disabled="" id="btn-continue">
+                        CONTINUE TO REVIEW
+                        <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Institutional Footer -->
+<footer class="bg-surface-container-high border-t border-border-gray py-8 mt-auto">
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    © 2024 DIGIMAT. Secure Electoral Infrastructure of Nepal. 
+                    Authorized by the Election Commission.
+                </p>
+<div class="flex gap-4 mt-2">
+<a class="font-label-caps text-label-caps text-primary hover:underline" href="#">Privacy Policy</a>
+<a class="font-label-caps text-label-caps text-primary hover:underline" href="#">Voter Rights</a>
+<a class="font-label-caps text-label-caps text-primary hover:underline" href="#">Technical Support</a>
+</div>
+</div>
+<div class="flex justify-start md:justify-end gap-6 items-center">
+<div class="text-right">
+<p class="font-label-caps text-[10px] text-on-surface-variant uppercase">Session ID</p>
+<p class="font-receipt-code text-receipt-code text-primary">SEC-9923-FF-X</p>
+</div>
+<div class="h-8 w-[1px] bg-border-gray"></div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="text-[10px] font-bold text-primary">AUDITED</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        function selectCandidate(card, radioId) {
+            // Unselect all cards
+            document.querySelectorAll('.group').forEach(c => {
+                c.classList.remove('card-selected');
+                c.classList.add('border-border-gray');
+            });
+            
+            // Uncheck all radios
+            document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+
+            // Select clicked card
+            card.classList.add('card-selected');
+            card.classList.remove('border-border-gray');
+            
+            const radio = document.getElementById(radioId);
+            radio.checked = true;
+
+            // Enable continue button
+            const btn = document.getElementById('btn-continue');
+            btn.disabled = false;
+            btn.classList.remove('opacity-50', 'cursor-not-allowed');
+            
+            // Show status
+            const status = document.getElementById('selection-status');
+            status.classList.remove('hidden');
+            
+            // Micro-interaction
+            card.classList.add('scale-[1.02]');
+            setTimeout(() => card.classList.remove('scale-[1.02]'), 200);
+        }
+
+        function confirmCancel() {
+            if(confirm("Are you sure you want to cancel the voting process? This will terminate your secure session and your progress will be lost.")) {
+                window.location.reload();
+            }
+        }
+        
+        // Disable accidental navigation
+        window.onbeforeunload = function() {
+            return "Your vote has not been cast. Are you sure you want to leave?";
+        };
+    </script>
+</body></html>

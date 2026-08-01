@@ -1,0 +1,403 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Security and Trust | DIGIMAT Nepal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e6e8eb",
+                        "border-gray": "#DDE4EC",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#00081e",
+                        "on-primary-container": "#7687b2",
+                        "on-surface-variant": "#44464e",
+                        "on-tertiary-fixed": "#002112",
+                        "secondary-container": "#dc2f42",
+                        "inverse-surface": "#2d3133",
+                        "outline": "#75777f",
+                        "surface-tint": "#4c5e86",
+                        "surface-variant": "#e0e3e6",
+                        "surface-container": "#eceef1",
+                        "surface-bright": "#f7f9fc",
+                        "on-secondary-fixed-variant": "#920020",
+                        "primary-container": "#0a1f44",
+                        "background": "#f7f9fc",
+                        "inverse-primary": "#b4c6f4",
+                        "surface-container-highest": "#e0e3e6",
+                        "surface": "#f7f9fc",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#34466d",
+                        "surface-container-low": "#f2f4f7",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#2c9969",
+                        "warning-gold": "#D99A21",
+                        "surface-dim": "#d8dadd",
+                        "soft-blue-bg": "#EEF3F9",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#002615",
+                        "dark-red": "#9F172B",
+                        "on-surface": "#191c1e",
+                        "on-primary-fixed": "#041a3f",
+                        "deep-navy": "#06152F",
+                        "outline-variant": "#c5c6cf",
+                        "secondary-fixed-dim": "#ffb3b2",
+                        "inverse-on-surface": "#eff1f4",
+                        "on-tertiary-fixed-variant": "#005233",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#73daa4",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#fffbff",
+                        "tertiary": "#000b04",
+                        "primary-fixed": "#d9e2ff",
+                        "on-secondary-fixed": "#410008",
+                        "primary-fixed-dim": "#b4c6f4",
+                        "tertiary-fixed": "#8ff7bf",
+                        "secondary-fixed": "#ffdad9",
+                        "secondary": "#b80d2d",
+                        "on-background": "#191c1e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-desktop": "48px",
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "receipt-code": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "receipt-code": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 200px;
+        }
+        .accordion-item.active .chevron {
+            transform: rotate(180deg);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .shadow-soft {
+            box-shadow: 0 4px 6px -1px rgba(0, 8, 30, 0.05), 0 2px 4px -1px rgba(0, 8, 30, 0.03);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest border-b border-border-gray sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-4"><a href="/" class="flex items-center gap-3">
+    <img alt="DIGIMAT Logo" class="h-10 w-auto" src="https://lh3.googleusercontent.com/aida/AP1WRLsg1uTZcASHvJR4ywcokKR0QXhnxYdev71OLUMsNTEePDI108XGHjRwUshCUJDyhQKp-ZR0CTs_ipxia55W0c4qZqaLEOmk62bmHnYJdjtDqXEhzWss5-GTon9FMmLu2jFODRiTMckge8MPaMBzrHgn9s6wyhV9PV0uj5C5R1lDR7pvY-QzqHH7ajGXnYKXO4m8LqMxRgLAHQwkOftACpGHjrH5iTp1m_NxjvPEZwk8Yu_7BeUUgZI6H27y">
+    <span class="font-headline-md text-headline-md font-bold text-primary">DIGIMAT</span>
+</a></div>
+<nav class="hidden md:flex items-center space-x-8"><a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Features</a>
+<div class="relative group">
+    <button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps py-2">
+        Categories
+        <span class="material-symbols-outlined text-[18px] transition-transform group-hover:rotate-180">expand_more</span>
+    </button>
+    <div class="absolute top-full left-0 w-72 bg-surface-container-lowest border border-border-gray rounded shadow-soft opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 py-2">
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors">Professional Associations &amp; Societies</a>
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors">Education</a>
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors">Unions</a>
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors">Governments</a>
+    </div>
+</div>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Results</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Help</a></nav>
+<div class="flex items-center gap-4"><div class="flex items-center gap-2 mr-4">
+    <button class="text-label-caps font-label-caps text-primary font-bold">EN</button>
+    <span class="text-border-gray">/</span>
+    <button class="text-label-caps font-label-caps text-on-surface-variant hover:text-primary transition-colors">नेपाली</button>
+</div>
+<button class="px-4 py-2 border-2 border-primary text-primary font-bold rounded hover:bg-primary hover:text-white transition-all font-label-caps text-label-caps">Sign In</button>
+<button class="px-4 py-2 bg-primary text-white font-bold rounded hover:opacity-90 transition-opacity font-label-caps text-label-caps">Request Demo</button></div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-desktop py-16">
+<!-- Hero Section -->
+<section class="text-center mb-24">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-soft-blue-bg border border-border-gray rounded-full mb-6">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label-caps text-label-caps text-primary">ISO 27001 CERTIFIED INFRASTRUCTURE</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-primary max-w-4xl mx-auto mb-6">
+                Election Integrity Starts with Responsible System Design
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                DIGIMAT provides a government-grade digital infrastructure for the Nepalese electoral process, combining cryptographic security with absolute transparency.
+            </p>
+</section>
+<!-- Security Bento Grid -->
+<section class="mb-32">
+<div class="flex items-end justify-between mb-12">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-2">Core Security Pillars</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Our multi-layered defense architecture ensures the sanctity of every vote.</p>
+</div>
+<div class="hidden md:block">
+<span class="font-label-caps text-label-caps text-primary opacity-50">SECURITY PROTOCOL v4.2</span>
+</div>
+</div>
+<div class="bento-grid">
+<!-- Large Card: Verified Access -->
+<div class="col-span-12 md:col-span-8 bg-white border border-border-gray p-8 rounded shadow-soft group hover:border-primary transition-colors">
+<div class="flex flex-col h-full justify-between">
+<div>
+<span class="material-symbols-outlined text-primary text-4xl mb-6">fingerprint</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Verified Access</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                                Integration with National ID systems and multi-factor biometric authentication ensures that only registered, eligible voters can access the digital ballot. Our "Identity-Separation" protocol ensures authentication happens without linking the identity to the final cast vote.
+                            </p>
+</div>
+<div class="flex gap-4">
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant font-label-caps text-[10px] rounded">KYC INTEGRATED</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant font-label-caps text-[10px] rounded">BIOMETRIC LOCK</span>
+</div>
+</div>
+</div>
+<!-- Card: Encryption -->
+<div class="col-span-12 md:col-span-4 bg-deep-navy p-8 rounded text-white flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-secondary-container text-4xl mb-6">lock</span>
+<h3 class="font-headline-md text-headline-md mb-4">End-to-End Encryption</h3>
+<p class="font-body-sm text-body-sm opacity-80">
+                            AES-256 bit encryption at rest and in transit. Your vote is sealed the moment you hit submit.
+                        </p>
+</div>
+<div class="mt-8 pt-8 border-t border-white/10">
+<code class="font-receipt-code text-receipt-code text-secondary-container">RSA_2048_PKCS1_OAEP</code>
+</div>
+</div>
+<!-- Card: Anonymous Ballots -->
+<div class="col-span-12 md:col-span-4 bg-white border border-border-gray p-8 rounded shadow-soft">
+<span class="material-symbols-outlined text-primary text-3xl mb-4">visibility_off</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Anonymous Ballots</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                        Decoupled data streams ensure that even system administrators cannot reconstruct a voter's specific choices.
+                    </p>
+</div>
+<!-- Card: One-vote Controls -->
+<div class="col-span-12 md:col-span-4 bg-white border border-border-gray p-8 rounded shadow-soft">
+<span class="material-symbols-outlined text-primary text-3xl mb-4">filter_1</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">One-vote Controls</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                        Smart ledger reconciliation prevents duplicate entries and ensures every citizen casts exactly one valid ballot.
+                    </p>
+</div>
+<!-- Card: Audit Trails -->
+<div class="col-span-12 md:col-span-4 bg-white border border-border-gray p-8 rounded shadow-soft">
+<span class="material-symbols-outlined text-primary text-3xl mb-4">history_edu</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Audit Trails</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                        Immutable system logs capture every administrative action, providing a complete chain of custody for all data.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Technical Architecture Section -->
+<section class="mb-32 bg-soft-blue-bg border border-border-gray rounded-xl overflow-hidden">
+<div class="grid grid-cols-1 md:grid-cols-2">
+<div class="p-12">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6">The Architecture of Confidence</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">
+                        Our distributed system architecture is designed to eliminate single points of failure. By utilizing regional data shards and real-time redundancy, DIGIMAT remains resilient against DDoS attacks and hardware failures.
+                    </p>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div>
+<strong class="font-bold text-primary block">Privacy-by-Design</strong>
+<span class="font-body-sm text-on-surface-variant">Data minimization principles applied to all citizen records.</span>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div>
+<strong class="font-bold text-primary block">Real-time Anomaly Detection</strong>
+<span class="font-body-sm text-on-surface-variant">AI-driven monitoring for suspicious voting patterns.</span>
+</div>
+</li>
+</ul>
+</div>
+<div class="relative min-h-[400px] bg-primary">
+<img class="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-40" data-alt="A sophisticated, minimalist technical architecture diagram of a secure voting system. The diagram features clean lines, geometric icons representing data nodes, servers, and encrypted channels. The color palette is strictly professional: deep navy backgrounds, glowing white circuit lines, and subtle success-green accents. The lighting is low-key and high-tech, appearing on a digital glass interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCv-rQVjW0QhkKur8qWzcu2IgG6TpJOCpIzgI0OFkE3cd8dnsY5_djZ0MnpzjDUwWTyfszSFh06SE7Y2EtGhZrC-TfXzllNkGVvPUPx09W6_mnkTduHp8NbcRslyo4156cQndoVWGdPEY8JYyaoFhICI4c05sKCrFA00w0lfp7bmP5lZfW4SlwKUHm-lP4V8bRRsqXHYaFZE9PTCH10nSZXkKgWUxBPuxRokZhGhevKPwycuBcjMPZhnA">
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="p-6 border border-white/20 bg-primary/80 backdrop-blur-md rounded text-center">
+<span class="font-label-caps text-label-caps text-white block mb-2">SYSTEM SCHEMA v2.1</span>
+<span class="font-body-sm text-white/60">Strictly Confidential Internal Architecture</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="max-w-3xl mx-auto mb-32">
+<h2 class="font-headline-lg text-headline-lg text-primary text-center mb-12">Frequently Asked Questions</h2>
+<div class="space-y-4">
+<!-- FAQ Item 1 -->
+<div class="accordion-item border border-border-gray bg-white rounded overflow-hidden">
+<button class="w-full p-6 flex justify-between items-center text-left hover:bg-surface-container-low transition-colors" onclick="this.parentElement.classList.toggle('active')">
+<span class="font-body-lg font-bold text-primary">Can admins see how I voted?</span>
+<span class="material-symbols-outlined chevron transition-transform text-primary">expand_more</span>
+</button>
+<div class="accordion-content">
+<div class="p-6 pt-0 font-body-md text-on-surface-variant border-t border-border-gray/50 mt-4">
+                            No. DIGIMAT uses a "blind signature" cryptographic technique. The system verifies that you are an eligible voter, but once the ballot is cast, the link between your identity and the ballot content is permanently severed. Not even a database administrator with full access can link a specific vote back to a specific citizen.
+                        </div>
+</div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="accordion-item border border-border-gray bg-white rounded overflow-hidden">
+<button class="w-full p-6 flex justify-between items-center text-left hover:bg-surface-container-low transition-colors" onclick="this.parentElement.classList.toggle('active')">
+<span class="font-body-lg font-bold text-primary">How is duplicate voting prevented?</span>
+<span class="material-symbols-outlined chevron transition-transform text-primary">expand_more</span>
+</button>
+<div class="accordion-content">
+<div class="p-6 pt-0 font-body-md text-on-surface-variant border-t border-border-gray/50 mt-4">
+                            When a voter authenticates, an encrypted token is generated and recorded in the central voter registry as "Voted." Any subsequent attempt to authenticate using the same credentials or National ID will be automatically flagged and rejected by the system's synchronization layer.
+                        </div>
+</div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="accordion-item border border-border-gray bg-white rounded overflow-hidden">
+<button class="w-full p-6 flex justify-between items-center text-left hover:bg-surface-container-low transition-colors" onclick="this.parentElement.classList.toggle('active')">
+<span class="font-body-lg font-bold text-primary">What happens in case of a system crash?</span>
+<span class="material-symbols-outlined chevron transition-transform text-primary">expand_more</span>
+</button>
+<div class="accordion-content">
+<div class="p-6 pt-0 font-body-md text-on-surface-variant border-t border-border-gray/50 mt-4">
+                            DIGIMAT utilizes distributed ledger technology that ensures data is mirrored across multiple secure data centers in real-time. If one node fails, the system seamlessly redirects traffic to another, ensuring zero data loss and uninterrupted voting service.
+                        </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="bg-primary rounded-2xl p-12 text-center text-white relative overflow-hidden">
+<div class="relative z-10">
+<h2 class="font-headline-lg text-headline-lg mb-4">Ready to Secure Your Election?</h2>
+<p class="font-body-md text-body-md opacity-80 mb-8 max-w-xl mx-auto">
+                    Speak with our security consultants to learn more about how DIGIMAT can bring transparency and trust to your organization.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="px-8 py-4 bg-white text-primary font-bold rounded-lg hover:bg-surface-container transition-colors font-headline-md text-headline-md">Download Technical Whitepaper</button>
+<button class="px-8 py-4 border-2 border-white/30 text-white font-bold rounded-lg hover:bg-white/10 transition-colors font-headline-md text-headline-md">Schedule Audit</button>
+</div>
+</div>
+<!-- Atmospheric Pattern -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.5) 1px, transparent 0); background-size: 24px 24px;"></div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-high border-t border-border-gray">
+<div class="w-full py-12 px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 mb-6">
+<img alt="DIGIMAT Logo" class="h-6 grayscale opacity-70" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2bBJ885iLrPQg4w945TrKhXWo0m5HD-2dCoLhyLlffmAyJHcLrN5GkTUTfPG8cbhqIdfUEaayuhFUiCF7rVNXGhrCzX7PiwXEnqzFkEOt5o5PHEaRr9RF_x2RSnc7KraH9KdP1Y7HQNJ_hl3rPiri48Vp-jZihogqVnnP4g-gDbMT-0fQrgJxyms-kkSGXtmCDayvI-IJBPm64kwzRF20QVrtd68Fh2hvOtqsyN4lqiCMxyK652eZsA">
+<span class="font-headline-md text-headline-md text-primary">DIGIMAT</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    Secure Electoral Infrastructure of Nepal. Delivering institutional trust through technology.
+                </p>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-primary mb-6">Solutions</h4>
+<ul class="space-y-3">
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">For Voters</a></li>
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">For Organizations</a></li>
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Security Overview</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-primary mb-6">Company</h4>
+<ul class="space-y-3">
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">About Us</a></li>
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Careers</a></li>
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-primary mb-6">Legal</h4>
+<ul class="space-y-3">
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Privacy Policy</a></li>
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Terms of Service</a></li>
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Nepal Data Act</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop py-8 border-t border-border-gray/30 flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="font-body-sm text-body-sm text-on-surface-variant">© 2024 DIGIMAT. Secure Electoral Infrastructure of Nepal.</span>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">public</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">verified</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">policy</span>
+</div>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for active nav links
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#') e.preventDefault();
+                document.querySelectorAll('nav a').forEach(l => l.classList.remove('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'h-20', 'flex', 'items-center'));
+                document.querySelectorAll('nav a').forEach(l => l.classList.add('text-on-surface-variant'));
+                
+                this.classList.remove('text-on-surface-variant');
+                this.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'h-20', 'flex', 'items-center');
+            });
+        });
+    </script>
+
+
+
+
+</body></html>

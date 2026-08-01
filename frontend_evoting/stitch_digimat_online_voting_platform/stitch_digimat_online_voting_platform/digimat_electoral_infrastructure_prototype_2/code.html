@@ -1,0 +1,502 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>DIGIMAT | Secure Electoral Infrastructure of Nepal</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-high": "#e6e8eb",
+                      "border-gray": "#DDE4EC",
+                      "on-tertiary": "#ffffff",
+                      "primary": "#00081e",
+                      "on-primary-container": "#7687b2",
+                      "on-surface-variant": "#44464e",
+                      "on-tertiary-fixed": "#002112",
+                      "secondary-container": "#dc2f42",
+                      "inverse-surface": "#2d3133",
+                      "outline": "#75777f",
+                      "surface-tint": "#4c5e86",
+                      "surface-variant": "#e0e3e6",
+                      "surface-container": "#eceef1",
+                      "surface-bright": "#f7f9fc",
+                      "on-secondary-fixed-variant": "#920020",
+                      "primary-container": "#0a1f44",
+                      "background": "#f7f9fc",
+                      "inverse-primary": "#b4c6f4",
+                      "surface-container-highest": "#e0e3e6",
+                      "surface": "#f7f9fc",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed-variant": "#34466d",
+                      "surface-container-low": "#f2f4f7",
+                      "on-error": "#ffffff",
+                      "on-tertiary-container": "#2c9969",
+                      "warning-gold": "#D99A21",
+                      "surface-dim": "#d8dadd",
+                      "soft-blue-bg": "#EEF3F9",
+                      "error": "#ba1a1a",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "tertiary-container": "#002615",
+                      "dark-red": "#9F172B",
+                      "on-surface": "#191c1e",
+                      "on-primary-fixed": "#041a3f",
+                      "deep-navy": "#06152F",
+                      "outline-variant": "#c5c6cf",
+                      "secondary-fixed-dim": "#ffb3b2",
+                      "inverse-on-surface": "#eff1f4",
+                      "on-tertiary-fixed-variant": "#005233",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed-dim": "#73daa4",
+                      "error-container": "#ffdad6",
+                      "on-secondary-container": "#fffbff",
+                      "tertiary": "#000b04",
+                      "primary-fixed": "#d9e2ff",
+                      "on-secondary-fixed": "#410008",
+                      "primary-fixed-dim": "#b4c6f4",
+                      "tertiary-fixed": "#8ff7bf",
+                      "secondary-fixed": "#ffdad9",
+                      "secondary": "#b80d2d",
+                      "on-background": "#191c1e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "margin-desktop": "48px",
+                      "margin-mobile": "16px",
+                      "container-max": "1280px",
+                      "unit": "8px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-md": ["Plus Jakarta Sans"],
+                      "headline-xl": ["Plus Jakarta Sans"],
+                      "receipt-code": ["JetBrains Mono"],
+                      "headline-lg-mobile": ["Plus Jakarta Sans"],
+                      "body-sm": ["Inter"],
+                      "label-caps": ["Inter"],
+                      "headline-lg": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "receipt-code": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pattern-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300081e' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2v-4h4v-2h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2v-4h4v-2H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<!-- TopNavBar -->
+<nav class="bg-white sticky top-0 z-50 border-b border-border-gray backdrop-blur-md h-20 flex items-center">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-16"><div class="flex items-center gap-8"><a href="/" class="flex items-center"><img src="https://lh3.googleusercontent.com/aida/AP1WRLsg1uTZcASHvJR4ywcokKR0QXhnxYdev71OLUMsNTEePDI108XGHjRwUshCUJDyhQKp-ZR0CTs_ipxia55W0c4qZqaLEOmk62bmHnYJdjtDqXEhzWss5-GTon9FMmLu2jFODRiTMckge8MPaMBzrHgn9s6wyhV9PV0uj5C5R1lDR7pvY-QzqHH7ajGXnYKXO4m8LqMxRgLAHQwkOftACpGHjrH5iTp1m_NxjvPEZwk8Yu_7BeUUgZI6H27y" alt="DIGIMAT Logo" class="h-10 w-auto"></a><div class="hidden lg:flex items-center gap-6"><a href="#" class="font-label-caps text-primary hover:text-secondary transition-colors uppercase tracking-widest">Home</a><a href="#" class="font-label-caps text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest">Features</a><div class="relative group"><button class="flex items-center gap-1 font-label-caps text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest">Categories<span class="material-symbols-outlined text-sm">keyboard_arrow_down</span></button><div class="absolute left-0 top-full hidden group-hover:block w-64 bg-white border border-outline-variant/30 rounded shadow-xl py-2 mt-2"><a href="#" class="block px-4 py-2 text-body-sm hover:bg-soft-blue-bg">Professional Associations</a><a href="#" class="block px-4 py-2 text-body-sm hover:bg-soft-blue-bg">Education</a><a href="#" class="block px-4 py-2 text-body-sm hover:bg-soft-blue-bg">Unions</a><a href="#" class="block px-4 py-2 text-body-sm hover:bg-soft-blue-bg">Governments</a></div></div><a href="#" class="font-label-caps text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest">Results</a><a href="#" class="font-label-caps text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest">Help</a></div></div><div class="flex items-center gap-6"><div class="hidden md:flex items-center gap-2 text-on-surface-variant font-label-caps text-xs"><span class="text-primary font-bold">EN</span><span class="opacity-30">|</span><button class="hover:text-primary transition-colors">नेपाली</button></div><button class="px-6 py-2 border border-primary text-primary font-label-caps text-xs rounded hover:bg-soft-blue-bg transition-all uppercase tracking-widest">Sign In</button><button class="px-6 py-2 bg-primary text-on-primary font-label-caps text-xs rounded shadow-sm hover:bg-deep-navy transition-all uppercase tracking-widest">Request Demo</button></div></div>
+</nav>
+<!-- Hero Section -->
+<section class="relative min-h-[800px] flex items-center overflow-hidden bg-deep-navy">
+<!-- Background Image with Sophisticated Overlay -->
+<div class="absolute inset-0 z-0">
+<img alt="Nepalese professionals collaborating" class="w-full h-full object-cover opacity-40" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXWJ7ra7Bwga52Osa5N3IDk-wZLNTgbvZiTMZsv4CX4MUWzw_B_bQKZSGEomDyUNNGFyb0nDjcN12P03m9_fgDyGbDoLgTC7xViEQHiTv9lmHDJ9axP-Yi5vWOg08upOc5_m8Xw7gypkOacolE6lXuC4J3JBaPMEzLJAuoMzuIM1V4DirkigbsjEKJh5ZPmG1DPaRl-eg-Dy8rAhM9AN76F_qGxGp1p9iIwyXfIvRVqF2upHvF3b4AAg">
+<div class="absolute inset-0 bg-gradient-to-r from-deep-navy via-deep-navy/80 to-transparent"></div>
+</div>
+<!-- Nepal-inspired Motif (Subtle Border Pattern) -->
+<div class="absolute bottom-0 left-0 w-full h-2 bg-secondary-container opacity-80 z-20"></div>
+<div class="absolute top-0 right-0 w-1/3 h-full opacity-5 pointer-events-none z-10">
+<svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+<path class="text-white" d="M0 0 L100 0 L100 100 Z" fill="currentColor"></path>
+</svg>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop relative z-20 w-full py-24">
+<div class="max-w-2xl">
+<!-- Floating Trust Badge / Live Status -->
+<div class="inline-flex items-center gap-3 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full mb-8">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-green-400"></span>
+</span>
+<span class="text-on-primary font-label-caps text-xs uppercase tracking-widest">Live Voting Status: 1,240 Active Polls</span>
+</div>
+<h1 class="font-headline-xl text-6xl text-on-primary mb-8 leading-[1.1] font-bold transition-all duration-700 opacity-100 translate-y-0">
+                Trusted Online Voting <br><span class="text-secondary-container">for Every Organization</span>
+</h1>
+<p class="font-body-lg text-xl text-on-primary/80 mb-12 max-w-xl leading-relaxed">
+                Empowering Nepal's institutions with secure, end-to-end encrypted voting infrastructure. Transparent results, verified by cryptography, built for national trust.
+            </p>
+<div class="flex flex-col sm:flex-row gap-6">
+<button class="px-10 py-5 bg-secondary-container text-on-primary font-headline-md text-body-md rounded-lg flex items-center justify-center gap-3 hover:scale-105 transition-all shadow-2xl">
+                    Start an Election
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="px-10 py-5 bg-white/5 backdrop-blur-sm border border-white/30 text-on-primary font-headline-md text-body-md rounded-lg flex items-center justify-center gap-2 hover:bg-white/10 transition-all">
+                    See How It Works
+                </button>
+</div>
+<!-- Secondary Trust Indicator -->
+<div class="mt-16 flex items-center gap-4 opacity-60">
+<div class="h-px w-12 bg-white/30"></div>
+<p class="text-on-primary text-sm font-label-caps uppercase tracking-tighter">Sovereign Trust Architecture</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Strip -->
+<section class="bg-primary py-12 border-y border-outline-variant">
+<div class="max-w-container-max mx-auto px-margin-desktop flex flex-wrap justify-between gap-8 md:gap-12">
+<div class="flex items-center gap-3 text-on-primary">
+<span class="material-symbols-outlined text-secondary-container" style="font-variation-settings: &quot;FILL&quot; 1;">verified_user</span>
+<span class="font-label-caps text-label-caps">Secure Authentication</span>
+</div>
+<div class="flex items-center gap-3 text-on-primary">
+<span class="material-symbols-outlined text-secondary-container" style="font-variation-settings: &quot;FILL&quot; 1;">privacy_tip</span>
+<span class="font-label-caps text-label-caps">Private Ballots</span>
+</div>
+<div class="flex items-center gap-3 text-on-primary">
+<span class="material-symbols-outlined text-secondary-container" style="font-variation-settings: &quot;FILL&quot; 1;">security</span>
+<span class="font-label-caps text-label-caps">Controlled Access</span>
+</div>
+<div class="flex items-center gap-3 text-on-primary">
+<span class="material-symbols-outlined text-secondary-container" style="font-variation-settings: &quot;FILL&quot; 1;">analytics</span>
+<span class="font-label-caps text-label-caps">Instant Tabulation</span>
+</div>
+</div>
+</section>
+<!-- How It Works -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4 transition-all duration-700 opacity-100 translate-y-0">Seamless 4-Step Workflow</h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto">Digitizing democracy doesn't have to be complex. Our workflow is designed for institutional clarity and absolute security.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter relative">
+<!-- Step 1 -->
+<div class="flex flex-col items-center text-center p-8 bg-white rounded-xl shadow-sm border border-border-gray hover:-translate-y-1 transition-all duration-700 opacity-100 translate-y-0">
+<div class="w-16 h-16 bg-soft-blue-bg text-primary rounded-full flex items-center justify-center mb-6 border border-border-gray">
+<span class="material-symbols-outlined text-3xl">add_circle</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Create</h3>
+<p class="text-body-sm text-on-surface-variant">Define candidates, set ballot parameters, and configure voting dates.</p>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center text-center p-8 bg-white rounded-xl shadow-sm border border-border-gray hover:-translate-y-1 transition-all duration-700 opacity-100 translate-y-0">
+<div class="w-16 h-16 bg-soft-blue-bg text-primary rounded-full flex items-center justify-center mb-6 border border-border-gray">
+<span class="material-symbols-outlined text-3xl">fingerprint</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Authenticate</h3>
+<p class="text-body-sm text-on-surface-variant">Voters are verified via citizenship data or organizational ID tokens.</p>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center text-center p-8 bg-white rounded-xl shadow-sm border border-border-gray hover:-translate-y-1 transition-all duration-700 opacity-100 translate-y-0">
+<div class="w-16 h-16 bg-soft-blue-bg text-primary rounded-full flex items-center justify-center mb-6 border border-border-gray">
+<span class="material-symbols-outlined text-3xl">how_to_vote</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Vote</h3>
+<p class="text-body-sm text-on-surface-variant">Cast ballots through a simple, end-to-end encrypted interface.</p>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center text-center p-8 bg-white rounded-xl shadow-sm border border-border-gray hover:-translate-y-1 transition-all duration-700 opacity-100 translate-y-0">
+<div class="w-16 h-16 bg-soft-blue-bg text-primary rounded-full flex items-center justify-center mb-6 border border-border-gray">
+<span class="material-symbols-outlined text-3xl">verified</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Publish</h3>
+<p class="text-body-sm text-on-surface-variant">Automated results calculation with full cryptographic audit trails.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Preview -->
+<section class="py-24 overflow-hidden">
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="order-2 lg:order-1 relative transition-all duration-700 opacity-100 translate-y-0">
+<div class="bg-white rounded-xl shadow-2xl border border-border-gray overflow-hidden">
+<div class="h-10 bg-surface-container flex items-center px-4 gap-2 border-b border-border-gray">
+<div class="w-3 h-3 rounded-full bg-red-400"></div>
+<div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+<div class="w-3 h-3 rounded-full bg-green-400"></div>
+<div class="ml-4 h-6 bg-white w-48 rounded border border-border-gray"></div>
+</div>
+<div class="p-8 space-y-6">
+<div class="flex justify-between items-end">
+<div>
+<h4 class="font-headline-md text-headline-md text-primary">Kathmandu Metropolitan Election</h4>
+<p class="text-body-sm text-on-surface-variant">Turnout Progress</p>
+</div>
+<span class="font-receipt-code text-primary font-bold text-lg">78.4%</span>
+</div>
+<div class="w-full h-4 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container w-[78%]"></div>
+</div>
+<img class="w-full rounded-lg border border-border-gray" data-alt="A high-fidelity administrative dashboard mockup for a voting system. It displays detailed bar charts and donut graphs showing voter turnout by district. The UI is clean, professional, and institutional, using a deep navy, white, and subtle red color palette with structured data tables and crisp typography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCywWmDXoGy1BbFMqPqjzf53j6hscxEPFLZ9zAITGDUOfE8os7O7N8t9VHVwHVJ_PuM3U3as18Q-ds0hMjHtJF5kN7w7nvr79mOhjil-t1iT37oPXKMlfJ6qlLlumwwWG1uAMVZ6_fQFXDM7TcgFd3-001c0v-awuJ1x2_jeZEp9mKCmCoOd372Vyl5H2tcSByNhUROctX9kGkEMlhhjOwXx2Xlrh5mb-O6ucPlyQ0GZL1i5ZQeAmWS9w">
+</div>
+</div>
+<!-- Abstract shadow/shape -->
+<div class="absolute -top-10 -left-10 w-full h-full bg-primary opacity-5 rounded-xl -z-10 rotate-2"></div>
+</div>
+<div class="order-1 lg:order-2 transition-all duration-700 opacity-100 translate-y-0">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6 transition-all duration-700 opacity-100 translate-y-0">Total Control for Administrators</h2>
+<p class="text-body-lg text-on-surface-variant mb-8">
+                    Our dashboard provides real-time oversight of your election's health without compromising individual voter anonymity. Monitor turnout, verify server integrity, and export results with one click.
+                </p>
+<ul class="space-y-4">
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary text-xl mt-1">check_circle</span>
+<div>
+<p class="font-body-md text-primary font-semibold">Real-time Turnout Monitoring</p>
+<p class="text-body-sm text-on-surface-variant">Live updates on how many ballots have been securely cast.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary text-xl mt-1">check_circle</span>
+<div>
+<p class="font-body-md text-primary font-semibold">Automated Voter Roll Management</p>
+<p class="text-body-sm text-on-surface-variant">Securely import and manage voter lists with encrypted identifiers.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary text-xl mt-1">check_circle</span>
+<div>
+<p class="font-body-md text-primary font-semibold">Immutable Results Ledger</p>
+<p class="text-body-sm text-on-surface-variant">Results are written to a secure blockchain-inspired ledger for auditing.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Key Features Grid -->
+<section class="py-24 bg-surface">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4 transition-all duration-700 opacity-100 translate-y-0">Core Infrastructure Features</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="p-8 border border-border-gray bg-white hover:border-primary transition-colors transition-all duration-700 opacity-100 translate-y-0">
+<span class="material-symbols-outlined text-4xl text-primary mb-6">lock</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-3">Double Encryption</h3>
+<p class="text-body-sm text-on-surface-variant">Ballots are encrypted at the device and again during transmission to ensure absolute privacy.</p>
+</div>
+<!-- Card 2 -->
+<div class="p-8 border border-border-gray bg-white hover:border-primary transition-colors transition-all duration-700 opacity-100 translate-y-0">
+<span class="material-symbols-outlined text-4xl text-primary mb-6">history_edu</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-3">Voter Verifiability</h3>
+<p class="text-body-sm text-on-surface-variant">Every voter receives a cryptographically signed receipt to verify their vote was recorded as intended.</p>
+</div>
+<!-- Card 3 -->
+<div class="p-8 border border-border-gray bg-white hover:border-primary transition-colors transition-all duration-700 opacity-100 translate-y-0">
+<span class="material-symbols-outlined text-4xl text-primary mb-6">devices</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-3">Device Neutral</h3>
+<p class="text-body-sm text-on-surface-variant">Optimized for smartphones, tablets, and desktops to ensure high participation across all demographics.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Solutions Cards -->
+<section class="py-24 bg-soft-blue-bg">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<h2 class="font-headline-lg text-headline-lg text-primary text-center mb-16 transition-all duration-700 opacity-100 translate-y-0">Custom Solutions for Nepal</h2>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+<div class="group cursor-pointer transition-all duration-700 opacity-100 translate-y-0">
+<div class="relative h-64 rounded-xl overflow-hidden mb-6">
+<div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/10 transition-colors z-10"></div>
+<img class="w-full h-full object-cover" data-alt="A majestic aerial view of a prominent administrative government building in Kathmandu, Nepal, with the Himalayas in the far background. The lighting is bright and crisp, emphasizing national pride and institutional stability. Professional architectural photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVHYQ40VcHZU8GRyBlXpUQq3F-xpQQIGI9ckgs-SCdQf9NStL9zYpD9TNSRs2o3e4FwZHGNO1AVc6GM_XXR0G5cLR78yopGr0UG3GY2agUGB9ERb46LEdlXW3RYgclnNHtcEkHrdiDwbNLEqsEK7Ohur0GP7GWCQyBkDAz1eTv6_oGkZY84eF14B4zaOyL9OG01uNkP7fowWD7MTmoX5WbfxcexUs2L7areJya0Z9oflAPr5jDVdd1Ow">
+<div class="absolute bottom-6 left-6 z-20">
+<h3 class="font-headline-md text-on-primary">Municipal Government</h3>
+</div>
+</div>
+<p class="text-on-surface-variant">Localized voting for city councils, ward representatives, and public consultations.</p>
+</div>
+<div class="group cursor-pointer transition-all duration-700 opacity-100 translate-y-0">
+<div class="relative h-64 rounded-xl overflow-hidden mb-6">
+<div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/10 transition-colors z-10"></div>
+<img class="w-full h-full object-cover" data-alt="A modern university lecture hall or student union building in Nepal with students walking by. The scene is academic and progressive, featuring high-contrast light and clean architectural lines. The image should convey trust and youth-led digital adoption." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF6XardqY7HhCiPlmiQkPykQnVGZgSmhYKXbfBr6ncIZRflXKU-eOE02BJVTfd2y2Pw4r4DkNEgUfyxzmFC9hKd-8dMR4hVJad1ql-68xBtxvKB0BVuXQBa1xHkfESrElh_a9ZYVhj2n4OA9rTRJGy21lTubqxQeE6ID5o40GANooZo0yF-kHlh53zl9yGIAtbT3DmflFW4fw0MO4MUgIE-jEnmINGCgLhXnopjNX1gIq9SisHk_KN2Q">
+<div class="absolute bottom-6 left-6 z-20">
+<h3 class="font-headline-md text-on-primary">Academic Institutions</h3>
+</div>
+</div>
+<p class="text-on-surface-variant">Student union elections and faculty board voting with robust authentication.</p>
+</div>
+<div class="group cursor-pointer transition-all duration-700 opacity-100 translate-y-0">
+<div class="relative h-64 rounded-xl overflow-hidden mb-6">
+<div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/10 transition-colors z-10"></div>
+<img class="w-full h-full object-cover" data-alt="A boardroom setting where cooperative members are meeting. The atmosphere is collaborative and professional, featuring traditional Nepalese design elements mixed with modern corporate furniture. The lighting is warm and welcoming yet authoritative." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDv8Z_S5ykmFVWiW97Hb7FZr7raaObEzA3nLUGCojuFDLTwgwTIpu3zQZR5ZZ0_YeBirZzg_-AJ9gS-iQUCiFz-27HjI9wd_2PEFCdsKu0vvWT8zZjkXqVLGQHYdNgDwhYPg_WQVom4WZN6M4kXItHaiFbVQV6RC5gXkXYNPQ5i_JpBa4OXF4HEtL-XmSAmItUROhC3FPpb04I_b81e4BfzQ0n7A8whQIVTruW_ttsNqXmnL4BXAZvuBg">
+<div class="absolute bottom-6 left-6 z-20">
+<h3 class="font-headline-md text-on-primary">Cooperatives &amp; NGOs</h3>
+</div>
+</div>
+<p class="text-on-surface-variant">Membership voting, policy updates, and leadership appointments for social organizations.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Security Section -->
+<section class="bg-deep-navy py-24 text-on-primary relative overflow-hidden">
+<div class="absolute inset-0 opacity-10 pattern-overlay"></div>
+<div class="max-w-container-max mx-auto px-margin-desktop relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="transition-all duration-700 opacity-100 translate-y-0">
+<h2 class="font-headline-lg text-headline-lg mb-8 transition-all duration-700 opacity-100 translate-y-0">Infallible Security Infrastructure</h2>
+<div class="space-y-10">
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 bg-on-primary/10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary-container">chevron_left</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md mb-2">Encrypted Transmission</h4>
+<p class="text-on-primary/70">Using AES-256 and RSA-4096 standards to ensure that no third party, including ourselves, can intercept or view your vote.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 bg-on-primary/10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary-container">assignment_turned_in</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md mb-2">Full Audit Records</h4>
+<p class="text-on-primary/70">Every action in the system is logged in a cryptographically sealed trail, allowing for independent post-election audits.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 bg-on-primary/10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary-container">hub</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md mb-2">Distributed Server Mesh</h4>
+<p class="text-on-primary/70">Our infrastructure is spread across multiple tier-4 data centers within Nepal to ensure 99.9% uptime during voting.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-center transition-all duration-700 opacity-100 translate-y-0">
+<div class="w-full max-w-md p-8 border border-on-primary/20 bg-white/5 backdrop-blur-sm rounded-2xl">
+<div class="text-center mb-8">
+<span class="material-symbols-outlined text-6xl text-secondary-container mb-4">gpp_maybe</span>
+<h3 class="font-headline-md text-headline-md">Zero-Knowledge Proofs</h3>
+<p class="text-sm text-on-primary/60 mt-2">The math behind the trust.</p>
+</div>
+<div class="space-y-3 font-receipt-code text-xs text-on-primary/80 opacity-50 bg-black/30 p-4 rounded-lg overflow-hidden">
+<p class="">AUTHENTICATING: V_TOKEN_0091...</p>
+<p class="">GENERATING_PROOF: HASH_3289XF...</p>
+<p class="">VERIFYING_CONSENSUS: NODE_KT_04...</p>
+<p class="">SYSTEM_STATUS: INTEGRITY_VERIFIED</p>
+</div>
+<p class="mt-8 text-center text-sm text-on-primary/70">
+                        Our system allows for verification of vote validity without ever revealing the voter's identity or choice.
+                    </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-24 bg-white border-b border-border-gray">
+<div class="max-w-4xl mx-auto px-margin-desktop text-center">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6 transition-all duration-700 opacity-100 translate-y-0">Make Your Next Election Simple, Secure, and Accessible</h2>
+<p class="text-body-lg text-on-surface-variant mb-10">
+                Join hundreds of organizations across Nepal transitioning to the future of digital democracy.
+            </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="px-12 py-4 bg-primary text-on-primary font-headline-md text-body-md rounded-lg shadow-xl hover:scale-105 transition-all">Get Started Today</button>
+<button class="px-12 py-4 border border-primary text-primary font-headline-md text-body-md rounded-lg hover:bg-soft-blue-bg transition-all">Schedule a Demo</button>
+</div>
+<p class="mt-8 text-body-sm text-on-surface-variant">Trusted by the Election Commission of Nepal for research &amp; development.</p>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-high py-16 border-t border-border-gray">
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="col-span-1 md:col-span-1 transition-all duration-700 opacity-100 translate-y-0">
+<img alt="DIGIMAT Logo" class="h-8 w-auto mb-6" src="https://lh3.googleusercontent.com/aida/AP1WRLsg1uTZcASHvJR4ywcokKR0QXhnxYdev71OLUMsNTEePDI108XGHjRwUshCUJDyhQKp-ZR0CTs_ipxia55W0c4qZqaLEOmk62bmHnYJdjtDqXEhzWss5-GTon9FMmLu2jFODRiTMckge8MPaMBzrHgn9s6wyhV9PV0uj5C5R1lDR7pvY-QzqHH7ajGXnYKXO4m8LqMxRgLAHQwkOftACpGHjrH5iTp1m_NxjvPEZwk8Yu_7BeUUgZI6H27y">
+<p class="text-body-sm text-on-surface-variant mb-4">Secure electoral infrastructure for a modern Nepal.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:text-secondary-container transition-colors">public</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:text-secondary-container transition-colors">share</span>
+</div>
+</div>
+<div class="transition-all duration-700 opacity-100 translate-y-0">
+<h5 class="font-label-caps text-label-caps text-primary mb-6 uppercase">Product</h5>
+<ul class="space-y-4 text-body-sm text-on-surface-variant">
+<li class=""><a class="hover:text-secondary-container transition-colors" href="#">Features</a></li>
+<li class=""><a class="hover:text-secondary-container transition-colors" href="#">Pricing</a></li>
+<li class=""><a class="hover:text-secondary-container transition-colors" href="#">Security Details</a></li>
+<li class=""><a class="hover:text-secondary-container transition-colors" href="#">API Support</a></li>
+</ul>
+</div>
+<div class="transition-all duration-700 opacity-100 translate-y-0">
+<h5 class="font-label-caps text-label-caps text-primary mb-6 uppercase">Resources</h5>
+<ul class="space-y-4 text-body-sm text-on-surface-variant">
+<li class=""><a class="hover:text-secondary-container transition-colors" href="#">Case Studies</a></li>
+<li class=""><a class="hover:text-secondary-container transition-colors" href="#">Documentation</a></li>
+<li class=""><a class="hover:text-secondary-container transition-colors" href="#">Legal Whitepapers</a></li>
+<li class=""><a class="hover:text-secondary-container transition-colors" href="#">Help Center</a></li>
+</ul>
+</div>
+<div class="transition-all duration-700 opacity-100 translate-y-0">
+<h5 class="font-label-caps text-label-caps text-primary mb-6 uppercase">Company</h5>
+<ul class="space-y-4 text-body-sm text-on-surface-variant">
+<li class=""><a class="hover:text-secondary-container transition-colors" href="#">About</a></li>
+<li class=""><a class="hover:text-secondary-container transition-colors" href="#">Privacy Policy</a></li>
+<li class=""><a class="hover:text-secondary-container transition-colors" href="#">Terms of Service</a></li>
+<li class=""><a class="hover:text-secondary-container transition-colors" href="#">Contact Us</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop mt-16 pt-8 border-t border-border-gray flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-body-sm text-on-surface-variant">© 2024 DIGIMAT. Secure Electoral Infrastructure of Nepal.</p>
+<p class="font-receipt-code text-xs text-on-surface-variant opacity-50">v4.2.0-STABLE | ENCRYPTED CHANNEL 72B-92</p>
+</div>
+</footer>
+<script>
+        // Micro-interactions and scroll effects
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-8');
+                    }
+                });
+            }, observerOptions);
+
+            // Select elements to animate
+            const animateElements = document.querySelectorAll('.grid > div, h2, h1');
+            animateElements.forEach(el => {
+                el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-8');
+                observer.observe(el);
+            });
+        });
+    </script>
+
+
+
+
+</body></html>

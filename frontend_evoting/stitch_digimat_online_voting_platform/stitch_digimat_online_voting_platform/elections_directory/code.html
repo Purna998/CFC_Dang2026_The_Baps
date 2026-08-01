@@ -1,0 +1,391 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>DIGIMAT | Elections Directory</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config Verbatim -->
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-high": "#e6e8eb",
+                      "border-gray": "#DDE4EC",
+                      "on-tertiary": "#ffffff",
+                      "primary": "#00081e",
+                      "on-primary-container": "#7687b2",
+                      "on-surface-variant": "#44464e",
+                      "on-tertiary-fixed": "#002112",
+                      "secondary-container": "#dc2f42",
+                      "inverse-surface": "#2d3133",
+                      "outline": "#75777f",
+                      "surface-tint": "#4c5e86",
+                      "surface-variant": "#e0e3e6",
+                      "surface-container": "#eceef1",
+                      "surface-bright": "#f7f9fc",
+                      "on-secondary-fixed-variant": "#920020",
+                      "primary-container": "#0a1f44",
+                      "background": "#f7f9fc",
+                      "inverse-primary": "#b4c6f4",
+                      "surface-container-highest": "#e0e3e6",
+                      "surface": "#f7f9fc",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed-variant": "#34466d",
+                      "surface-container-low": "#f2f4f7",
+                      "on-error": "#ffffff",
+                      "on-tertiary-container": "#2c9969",
+                      "warning-gold": "#D99A21",
+                      "surface-dim": "#d8dadd",
+                      "soft-blue-bg": "#EEF3F9",
+                      "error": "#ba1a1a",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "tertiary-container": "#002615",
+                      "dark-red": "#9F172B",
+                      "on-surface": "#191c1e",
+                      "on-primary-fixed": "#041a3f",
+                      "deep-navy": "#06152F",
+                      "outline-variant": "#c5c6cf",
+                      "secondary-fixed-dim": "#ffb3b2",
+                      "inverse-on-surface": "#eff1f4",
+                      "on-tertiary-fixed-variant": "#005233",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed-dim": "#73daa4",
+                      "error-container": "#ffdad6",
+                      "on-secondary-container": "#fffbff",
+                      "tertiary": "#000b04",
+                      "primary-fixed": "#d9e2ff",
+                      "on-secondary-fixed": "#410008",
+                      "primary-fixed-dim": "#b4c6f4",
+                      "tertiary-fixed": "#8ff7bf",
+                      "secondary-fixed": "#ffdad9",
+                      "secondary": "#b80d2d",
+                      "on-background": "#191c1e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "margin-desktop": "48px",
+                      "margin-mobile": "16px",
+                      "container-max": "1280px",
+                      "unit": "8px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-md": ["Plus Jakarta Sans"],
+                      "headline-xl": ["Plus Jakarta Sans"],
+                      "receipt-code": ["JetBrains Mono"],
+                      "headline-lg-mobile": ["Plus Jakarta Sans"],
+                      "body-sm": ["Inter"],
+                      "label-caps": ["Inter"],
+                      "headline-lg": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "receipt-code": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- TopNavBar -->
+<nav class="bg-surface-container-lowest dark:bg-surface-container-lowest sticky top-0 z-50 border-b border-border-gray dark:border-outline-variant h-20"><div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-full">
+  <div class="flex items-center gap-4">
+    <img alt="DIGIMAT Logo" class="h-10" src="https://lh3.googleusercontent.com/aida/AP1WRLsg1uTZcASHvJR4ywcokKR0QXhnxYdev71OLUMsNTEePDI108XGHjRwUshCUJDyhQKp-ZR0CTs_ipxia55W0c4qZqaLEOmk62bmHnYJdjtDqXEhzWss5-GTon9FMmLu2jFODRiTMckge8MPaMBzrHgn9s6wyhV9PV0uj5C5R1lDR7pvY-QzqHH7ajGXnYKXO4m8LqMxRgLAHQwkOftACpGHjrH5iTp1m_NxjvPEZwk8Yu_7BeUUgZI6H27y">
+    <span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">DIGIMAT</span>
+  </div>
+  <div class="hidden md:flex gap-8 items-center">
+    <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Home</a>
+    <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Features</a>
+    <div class="relative group">
+      <button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps">
+        <span class="">Categories</span>
+        <span class="material-symbols-outlined text-[18px]">keyboard_arrow_down</span>
+      </button>
+      <div class="absolute top-full left-0 mt-2 w-64 bg-surface-container-lowest border border-border-gray rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 py-2">
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Professional Associations &amp; Societies</a>
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Education</a>
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Unions</a>
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Governments</a>
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Political Parties</a>
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Cooperatives and Credit Unions</a>
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Condos &amp; HOAs</a>
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Corporate &amp; Shareholder</a>
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">First Nations</a>
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Sports &amp; Leisure Clubs</a>
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Membership Organizations</a>
+      </div>
+    </div>
+    <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Results</a>
+    <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Help</a>
+  </div>
+  <div class="flex items-center gap-4">
+    <div class="flex items-center gap-1 text-on-surface-variant font-label-caps text-label-caps cursor-pointer hover:text-primary transition-colors">
+      <span class="material-symbols-outlined text-[20px]">language</span>
+      <span class="">EN / नेपाली</span>
+    </div>
+    <button class="px-4 py-2 border border-primary text-primary font-label-caps text-label-caps rounded hover:bg-surface-container transition-colors">Sign In</button>
+    <button class="px-4 py-2 bg-primary text-on-primary font-label-caps text-label-caps rounded hover:opacity-90 transition-opacity">Request Demo</button>
+  </div>
+</div></nav>
+<main class="max-w-container-max mx-auto px-margin-desktop py-12 flex flex-col md:flex-row gap-gutter">
+<!-- Sidebar Filters -->
+<aside class="w-full md:w-64 flex-shrink-0">
+<div class="sticky top-32 space-y-8">
+<div>
+<h3 class="font-headline-md text-headline-md mb-6">Directory</h3>
+<div class="relative mb-8">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-3 bg-white border border-border-gray rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none font-body-sm text-body-sm" placeholder="Search elections..." type="text">
+</div>
+</div>
+<nav class="space-y-1"><div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-full">
+  <div class="flex items-center gap-4">
+    <img alt="DIGIMAT Logo" class="h-10" src="https://lh3.googleusercontent.com/aida/AP1WRLsg1uTZcASHvJR4ywcokKR0QXhnxYdev71OLUMsNTEePDI108XGHjRwUshCUJDyhQKp-ZR0CTs_ipxia55W0c4qZqaLEOmk62bmHnYJdjtDqXEhzWss5-GTon9FMmLu2jFODRiTMckge8MPaMBzrHgn9s6wyhV9PV0uj5C5R1lDR7pvY-QzqHH7ajGXnYKXO4m8LqMxRgLAHQwkOftACpGHjrH5iTp1m_NxjvPEZwk8Yu_7BeUUgZI6H27y">
+    <span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">DIGIMAT</span>
+  </div>
+  <div class="hidden md:flex gap-8 items-center">
+    <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Home</a>
+    <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Features</a>
+    <div class="relative group">
+      <button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps">
+        <span class="">Categories</span>
+        <span class="material-symbols-outlined text-[18px]">keyboard_arrow_down</span>
+      </button>
+      <div class="absolute top-full left-0 mt-2 w-64 bg-surface-container-lowest border border-border-gray rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 py-2">
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Professional Associations &amp; Societies</a>
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Education</a>
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Unions</a>
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Governments</a>
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Political Parties</a>
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Cooperatives and Credit Unions</a>
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Condos &amp; HOAs</a>
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Corporate &amp; Shareholder</a>
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">First Nations</a>
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Sports &amp; Leisure Clubs</a>
+        <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Membership Organizations</a>
+      </div>
+    </div>
+    <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Results</a>
+    <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Help</a>
+  </div>
+  <div class="flex items-center gap-4">
+    <div class="flex items-center gap-1 text-on-surface-variant font-label-caps text-label-caps cursor-pointer hover:text-primary transition-colors">
+      <span class="material-symbols-outlined text-[20px]">language</span>
+      <span class="">EN / नेपाली</span>
+    </div>
+    <button class="px-4 py-2 border border-primary text-primary font-label-caps text-label-caps rounded hover:bg-surface-container transition-colors">Sign In</button>
+    <button class="px-4 py-2 bg-primary text-on-primary font-label-caps text-label-caps rounded hover:opacity-90 transition-opacity">Request Demo</button>
+  </div>
+</div></nav>
+</div>
+</aside>
+<!-- Election Grid Content -->
+<section class="flex-1">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary">Live Elections</h1>
+<p class="text-on-surface-variant mt-1">Found 12 secure electoral processes in Nepal.</p>
+</div>
+<div class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<span class="">Sort by:</span>
+<select class="bg-transparent border-none focus:ring-0 font-bold text-primary cursor-pointer">
+<option>Newest first</option>
+<option>Ending soon</option>
+<option>Participation</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-gutter">
+<!-- Election Card: Active -->
+<div class="bg-white border border-border-gray rounded-xl overflow-hidden hover:shadow-lg transition-shadow group">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="px-2 py-1 bg-green-100 text-green-800 text-[10px] font-bold uppercase rounded tracking-wider flex items-center gap-1">
+<span class="w-1.5 h-1.5 bg-green-600 rounded-full animate-pulse"></span>
+                                Active
+                            </span>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[14px]">timer</span>
+<span class="">2d 14h 05m</span>
+</div>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary group-hover:text-secondary transition-colors leading-tight mb-2">2024 Federal General Election - Bagmati Province</h2>
+<div class="flex items-center gap-2 mb-6">
+<img class="w-6 h-6 rounded-full" data-alt="Official round emblem of the Election Commission of Nepal, featuring gold and crimson crest elements on a white circular background, highly detailed professional government branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcBrQhGj3aZ7idRQnKzcmJmNZqaEHRfN5F4BpY6_MKKas6-mu-kcQC_I7GPHt6s03gnK4eYjNfSMORI2hqCtfedSFhRDkNOybOqNIU2KK8lhWJ99oaQlL54i4VF-CkUlbaWLTnJ4bIVjIIr4PdpKl6_GbhAKFDSUZ9oHD6FuqKwpML68N-Vkhgali1u5gM05T8x7PTW3RCpKFcrZfHW9m69VmLQGxitNy_9BP4ZPKA32S3USJF2_mtLg">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Verified by Election Commission of Nepal</span>
+</div>
+<div class="space-y-4 mb-8">
+<div class="flex justify-between text-[13px]">
+<span class="text-on-surface-variant">Voter Turnout</span>
+<span class="font-bold text-primary">64.2%</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 64.2%"></div>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-primary text-on-primary py-3 rounded font-label-caps text-label-caps hover:bg-primary-container transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">how_to_vote</span>
+                                Vote Now
+                            </button>
+<button class="p-3 border border-border-gray rounded text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">info</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Election Card: Completed -->
+<div class="bg-white border border-border-gray rounded-xl overflow-hidden hover:shadow-lg transition-shadow group">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="px-2 py-1 bg-surface-container-high text-on-surface-variant text-[10px] font-bold uppercase rounded tracking-wider">
+                                Completed
+                            </span>
+<div class="text-on-surface-variant font-label-caps text-label-caps">
+                                Finalized Oct 12, 2024
+                            </div>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary group-hover:text-secondary transition-colors leading-tight mb-2">Kathmandu University Senate Board Selection</h2>
+<div class="flex items-center gap-2 mb-6">
+<img class="w-6 h-6 rounded-full" data-alt="A professional university crest with dark blue and white colors, featuring traditional academic symbols like an open book and a flame, clean vector style for university branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKzRSX8tXDhutBmH20Hpvi60ADGVnjpDeBhs5xfXbuF6bXSNn9mrbObGjjV1g-dzzMoe9E78NBU2HyY-PdBrXJUBlCZtwazn1fZkEYlpL40N9wPTmWZsiMf_EfIZg461O1CouRKU9Of56SZAyc9BDDKn1ZTOSL75mU0hlSB58PAv6-bJ9nqtHBheL0SY6DYzYXjcVrFEdOmYDZaPyczXxjpUZYlDk7npMr-2KjRmDI4OajWATDlBYH0w">
+<span class="font-body-sm text-body-sm text-on-surface-variant">KU Administration (Institutional)</span>
+</div>
+<div class="space-y-4 mb-8">
+<div class="p-3 bg-soft-blue-bg rounded border border-border-gray flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1">verified</span>
+<div class="text-[12px]">
+<p class="font-bold text-primary">Audit Log Verified</p>
+<p class="text-on-surface-variant">Blockchain hash: 0x82f...a1e</p>
+</div>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 border border-primary text-primary py-3 rounded font-label-caps text-label-caps hover:bg-surface-container transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">analytics</span>
+                                View Results
+                            </button>
+<button class="p-3 border border-border-gray rounded text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">history</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Skeleton Loader -->
+<div class="bg-white border border-border-gray rounded-xl overflow-hidden opacity-60">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div class="skeleton w-20 h-5 rounded"></div>
+<div class="skeleton w-24 h-5 rounded"></div>
+</div>
+<div class="skeleton w-full h-8 rounded mb-2"></div>
+<div class="skeleton w-3/4 h-8 rounded mb-6"></div>
+<div class="flex items-center gap-2 mb-6">
+<div class="skeleton w-6 h-6 rounded-full"></div>
+<div class="skeleton w-40 h-4 rounded"></div>
+</div>
+<div class="space-y-4 mb-8">
+<div class="skeleton w-full h-1.5 rounded-full"></div>
+</div>
+<div class="flex gap-3">
+<div class="skeleton flex-1 h-12 rounded"></div>
+<div class="skeleton w-12 h-12 rounded"></div>
+</div>
+</div>
+</div>
+<!-- Empty State (Hidden by default, for demonstration) -->
+<div class="hidden col-span-full py-20 flex flex-col items-center justify-center text-center">
+<div class="w-24 h-24 bg-surface-container rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-[48px] text-on-surface-variant">search_off</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">No elections found</h3>
+<p class="text-on-surface-variant max-w-xs">We couldn't find any elections matching your current filters. Try adjusting your search criteria.</p>
+<button class="mt-8 px-6 py-3 bg-primary text-on-primary rounded font-label-caps text-label-caps">Clear all filters</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-high dark:bg-surface-dim border-t border-border-gray dark:border-outline mt-20">
+<div class="w-full py-12 px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-2">
+<div class="flex items-center gap-3 mb-6">
+<img alt="DIGIMAT Logo" class="h-8" src="https://lh3.googleusercontent.com/aida/AP1WRLsg1uTZcASHvJR4ywcokKR0QXhnxYdev71OLUMsNTEePDI108XGHjRwUshCUJDyhQKp-ZR0CTs_ipxia55W0c4qZqaLEOmk62bmHnYJdjtDqXEhzWss5-GTon9FMmLu2jFODRiTMckge8MPaMBzrHgn9s6wyhV9PV0uj5C5R1lDR7pvY-QzqHH7ajGXnYKXO4m8LqMxRgLAHQwkOftACpGHjrH5iTp1m_NxjvPEZwk8Yu_7BeUUgZI6H27y">
+<span class="font-headline-md text-headline-md text-primary">DIGIMAT</span>
+</div>
+<p class="text-on-surface-variant font-body-sm text-body-sm max-w-sm">
+                    © 2024 DIGIMAT. Secure Electoral Infrastructure of Nepal. 
+                    Empowering civic participation through infallible digital governance.
+                </p>
+</div>
+<div class="space-y-4">
+<p class="font-label-caps text-label-caps text-primary">Ecosystem</p>
+<ul class="space-y-2 text-on-surface-variant font-body-sm text-body-sm">
+<li class=""><a class="hover:text-secondary transition-colors" href="#">About</a></li>
+<li class=""><a class="hover:text-secondary transition-colors" href="#">For Voters</a></li>
+<li class=""><a class="hover:text-secondary transition-colors" href="#">For Organizations</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<p class="font-label-caps text-label-caps text-primary">Compliance</p>
+<ul class="space-y-2 text-on-surface-variant font-body-sm text-body-sm">
+<li class=""><a class="hover:text-secondary transition-colors" href="#">Legal</a></li>
+<li class=""><a class="hover:text-secondary transition-colors" href="#">Privacy Policy</a></li>
+<li class=""><a class="hover:text-secondary transition-colors" href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for filter buttons
+        document.querySelectorAll('aside nav button').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active classes
+                document.querySelectorAll('aside nav button').forEach(btn => {
+                    btn.classList.remove('bg-secondary-container', 'text-on-secondary-container');
+                    btn.classList.add('text-on-surface-variant', 'hover:bg-surface-container');
+                });
+                // Add active classes to clicked
+                button.classList.add('bg-secondary-container', 'text-on-secondary-container');
+                button.classList.remove('text-on-surface-variant', 'hover:bg-surface-container');
+            });
+        });
+    </script>
+
+
+
+
+</body></html>

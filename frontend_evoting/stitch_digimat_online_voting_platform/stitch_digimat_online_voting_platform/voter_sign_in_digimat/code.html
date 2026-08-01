@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Voter Login | DIGIMAT - Secure Digital Matadan</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-high": "#e6e8eb",
+                      "border-gray": "#DDE4EC",
+                      "on-tertiary": "#ffffff",
+                      "primary": "#00081e",
+                      "on-primary-container": "#7687b2",
+                      "on-surface-variant": "#44464e",
+                      "on-tertiary-fixed": "#002112",
+                      "secondary-container": "#dc2f42",
+                      "inverse-surface": "#2d3133",
+                      "outline": "#75777f",
+                      "surface-tint": "#4c5e86",
+                      "surface-variant": "#e0e3e6",
+                      "surface-container": "#eceef1",
+                      "surface-bright": "#f7f9fc",
+                      "on-secondary-fixed-variant": "#920020",
+                      "primary-container": "#0a1f44",
+                      "background": "#f7f9fc",
+                      "inverse-primary": "#b4c6f4",
+                      "surface-container-highest": "#e0e3e6",
+                      "surface": "#f7f9fc",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed-variant": "#34466d",
+                      "surface-container-low": "#f2f4f7",
+                      "on-error": "#ffffff",
+                      "on-tertiary-container": "#2c9969",
+                      "warning-gold": "#D99A21",
+                      "surface-dim": "#d8dadd",
+                      "soft-blue-bg": "#EEF3F9",
+                      "error": "#ba1a1a",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "tertiary-container": "#002615",
+                      "dark-red": "#9F172B",
+                      "on-surface": "#191c1e",
+                      "on-primary-fixed": "#041a3f",
+                      "deep-navy": "#06152F",
+                      "outline-variant": "#c5c6cf",
+                      "secondary-fixed-dim": "#ffb3b2",
+                      "inverse-on-surface": "#eff1f4",
+                      "on-tertiary-fixed-variant": "#005233",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed-dim": "#73daa4",
+                      "error-container": "#ffdad6",
+                      "on-secondary-container": "#fffbff",
+                      "tertiary": "#000b04",
+                      "primary-fixed": "#d9e2ff",
+                      "on-secondary-fixed": "#410008",
+                      "primary-fixed-dim": "#b4c6f4",
+                      "tertiary-fixed": "#8ff7bf",
+                      "secondary-fixed": "#ffdad9",
+                      "secondary": "#b80d2d",
+                      "on-background": "#191c1e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "margin-desktop": "48px",
+                      "margin-mobile": "16px",
+                      "container-max": "1280px",
+                      "unit": "8px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-md": ["Plus Jakarta Sans"],
+                      "headline-xl": ["Plus Jakarta Sans"],
+                      "receipt-code": ["JetBrains Mono"],
+                      "headline-lg-mobile": ["Plus Jakarta Sans"],
+                      "body-sm": ["Inter"],
+                      "label-caps": ["Inter"],
+                      "headline-lg": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "receipt-code": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pattern-bg {
+            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        .form-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        .focus-ring:focus {
+            outline: 2px solid #06152F;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface min-h-screen">
+<main class="flex flex-col md:flex-row min-h-screen">
+<!-- Left Column: Branding & Messaging -->
+<section class="w-full md:w-1/2 bg-deep-navy relative flex items-center justify-center p-margin-mobile md:p-margin-desktop overflow-hidden">
+<!-- Decorative Pattern Overlay -->
+<div class="absolute inset-0 pattern-bg opacity-40"></div>
+<!-- Animated Background Shader (Subtle atmospheric effect) -->
+<div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+
+</div>
+<div class="relative z-10 flex flex-col items-center text-center max-w-lg">
+<!-- Logo -->
+<div class="mb-12 transform hover:scale-105 transition-transform duration-500">
+<img alt="DIGIMAT Logo" class="h-24 md:h-32 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2bBJ885iLrPQg4w945TrKhXWo0m5HD-2dCoLhyLlffmAyJHcLrN5GkTUTfPG8cbhqIdfUEaayuhFUiCF7rVNXGhrCzX7PiwXEnqzFkEOt5o5PHEaRr9RF_x2RSnc7KraH9KdP1Y7HQNJ_hl3rPiri48Vp-jZihogqVnnP4g-gDbMT-0fQrgJxyms-kkSGXtmCDayvI-IJBPm64kwzRF20QVrtd68Fh2hvOtqsyN4lqiCMxyK652eZsA"/>
+</div>
+<!-- Branding Text -->
+<h1 class="font-headline-xl text-headline-xl text-on-primary mb-6">
+                    Your Vote. Your Voice.<br/>
+<span class="text-secondary">Your Digital Matadan.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-primary-container max-w-md opacity-90">
+                    Empowering the citizens of Nepal with a secure, transparent, and immutable electoral infrastructure. 
+                    Verified by blockchain, protected by national security standards.
+                </p>
+<!-- Status Indicators -->
+<div class="mt-16 grid grid-cols-2 gap-gutter text-left border-t border-white/10 pt-8 w-full">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-tertiary-fixed text-[18px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label-caps text-label-caps text-white/60">SECURITY</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-primary">AES-256 Encrypted</p>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-tertiary-fixed text-[18px]" style="font-variation-settings: 'FILL' 1;">lan</span>
+<span class="font-label-caps text-label-caps text-white/60">INTEGRITY</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-primary">Distributed Ledger</p>
+</div>
+</div>
+</div>
+<!-- Bottom Left Cultural Motif -->
+<div class="absolute bottom-0 left-0 w-64 h-64 opacity-5 pointer-events-none">
+<div class="w-full h-full border-r border-t border-white rotate-45 transform translate-x-[-50%] translate-y-[50%]"></div>
+</div>
+</section>
+<!-- Right Column: Login Form -->
+<section class="w-full md:w-1/2 flex items-center justify-center p-margin-mobile md:p-margin-desktop bg-surface">
+<div class="w-full max-w-md">
+<!-- Mobile Logo (Visible only on mobile) -->
+<div class="md:hidden flex justify-center mb-8">
+<img alt="DIGIMAT" class="h-12 w-auto grayscale brightness-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2bBJ885iLrPQg4w945TrKhXWo0m5HD-2dCoLhyLlffmAyJHcLrN5GkTUTfPG8cbhqIdfUEaayuhFUiCF7rVNXGhrCzX7PiwXEnqzFkEOt5o5PHEaRr9RF_x2RSnc7KraH9KdP1Y7HQNJ_hl3rPiri48Vp-jZihogqVnnP4g-gDbMT-0fQrgJxyms-kkSGXtmCDayvI-IJBPm64kwzRF20QVrtd68Fh2hvOtqsyN4lqiCMxyK652eZsA"/>
+</div>
+<div class="mb-10">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-2">Voter Portal Login</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Please authenticate using your national voter credentials.</p>
+</div>
+<!-- Form -->
+<form class="space-y-6" id="loginForm">
+<!-- Voter ID / Email -->
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2" for="voterId">
+                            VOTER ID OR REGISTERED EMAIL
+                        </label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/60">badge</span>
+<input class="w-full h-12 pl-12 pr-4 bg-white border border-border-gray rounded-lg focus:border-primary focus:ring-1 focus:ring-primary transition-all font-body-md" id="voterId" name="voterId" placeholder="e.g. NP-123456789" required="" type="text"/>
+</div>
+<span class="block font-body-sm text-body-sm text-on-surface-variant mt-1 italic">Example: NP-XXXX-XXXX</span>
+</div>
+<!-- Password -->
+<div>
+<div class="flex justify-between items-center mb-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant" for="password">
+                                SECURITY PASSWORD
+                            </label>
+<a class="font-label-caps text-label-caps text-secondary hover:underline transition-all" href="#">Forgot Credentials?</a>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/60">lock</span>
+<input class="w-full h-12 pl-12 pr-12 bg-white border border-border-gray rounded-lg focus:border-primary focus:ring-1 focus:ring-primary transition-all font-body-md" id="password" name="password" placeholder="••••••••••••" required="" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant/60 hover:text-primary transition-colors" onclick="togglePassword()" type="button">
+<span class="material-symbols-outlined" id="visibility_icon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Remember Device -->
+<div class="flex items-center">
+<input class="w-5 h-5 text-primary border-border-gray rounded focus:ring-primary" id="remember" name="remember" type="checkbox"/>
+<label class="ml-3 font-body-md text-body-md text-on-surface-variant cursor-pointer select-none" for="remember">
+                            Remember this device for 24 hours
+                        </label>
+</div>
+<!-- CTA Button -->
+<button class="w-full h-14 bg-deep-navy text-on-primary font-headline-md text-headline-md rounded-lg hover:bg-primary-container active:scale-[0.98] transition-all flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">login</span>
+                        Sign In to Secure Portal
+                    </button>
+</form>
+<!-- Institutional Footer -->
+<div class="mt-12 pt-8 border-t border-border-gray flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<p class="font-label-caps text-label-caps text-on-surface-variant">ADMINISTRATIVE ACCESS</p>
+<a class="font-body-md text-body-md text-primary font-bold hover:text-secondary transition-colors flex items-center gap-1" href="#">
+                                Election Commission Login
+                                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<div class="bg-soft-blue-bg p-3 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">verified</span>
+<span class="font-label-caps text-label-caps text-primary">ISO 27001</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-4 text-on-surface-variant">
+<a class="font-body-sm text-body-sm hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<span class="text-border-gray">•</span>
+<a class="font-body-sm text-body-sm hover:text-primary transition-colors" href="#">Terms of Service</a>
+<span class="text-border-gray">•</span>
+<a class="font-body-sm text-body-sm hover:text-primary transition-colors" href="#">Digital Helpdesk</a>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant/60">
+                        © 2024 DIGIMAT. Secure Electoral Infrastructure of Nepal. Unauthorized access is strictly prohibited and monitored by law.
+                    </p>
+</div>
+</div>
+</section>
+</main>
+<!-- Custom Micro-interactions -->
+<script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const icon = document.getElementById('visibility_icon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.innerText = 'visibility_off';
+            } else {
+                passwordInput.type = 'password';
+                icon.innerText = 'visibility';
+            }
+        }
+
+        // Simple form handling for visual feedback
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalContent = btn.innerHTML;
+            
+            btn.disabled = true;
+            btn.innerHTML = `
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Authenticating...
+            `;
+            
+            // Artificial delay to simulate secure check
+            setTimeout(() => {
+                alert("This is a UI prototype. In a live environment, you would be redirected to your secure voting dashboard.");
+                btn.disabled = false;
+                btn.innerHTML = originalContent;
+            }, 1500);
+        });
+
+        // Atmospheric parallax effect on background pattern
+        document.addEventListener('mousemove', (e) => {
+            const pattern = document.querySelector('.pattern-bg');
+            if(window.innerWidth > 768) {
+                const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+                const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+                pattern.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            }
+        });
+    </script>
+</body></html>

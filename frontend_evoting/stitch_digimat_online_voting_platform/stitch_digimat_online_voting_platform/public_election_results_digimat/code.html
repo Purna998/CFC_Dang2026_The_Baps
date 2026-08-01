@@ -1,0 +1,459 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>DIGIMAT | Public Results Dashboard</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "surface-container-high": "#e6e8eb",
+                "border-gray": "#DDE4EC",
+                "on-tertiary": "#ffffff",
+                "primary": "#00081e",
+                "on-primary-container": "#7687b2",
+                "on-surface-variant": "#44464e",
+                "on-tertiary-fixed": "#002112",
+                "secondary-container": "#dc2f42",
+                "inverse-surface": "#2d3133",
+                "outline": "#75777f",
+                "surface-tint": "#4c5e86",
+                "surface-variant": "#e0e3e6",
+                "surface-container": "#eceef1",
+                "surface-bright": "#f7f9fc",
+                "on-secondary-fixed-variant": "#920020",
+                "primary-container": "#0a1f44",
+                "background": "#f7f9fc",
+                "inverse-primary": "#b4c6f4",
+                "surface-container-highest": "#e0e3e6",
+                "surface": "#f7f9fc",
+                "on-error-container": "#93000a",
+                "on-primary-fixed-variant": "#34466d",
+                "surface-container-low": "#f2f4f7",
+                "on-error": "#ffffff",
+                "on-tertiary-container": "#2c9969",
+                "warning-gold": "#D99A21",
+                "surface-dim": "#d8dadd",
+                "soft-blue-bg": "#EEF3F9",
+                "error": "#ba1a1a",
+                "surface-container-lowest": "#ffffff",
+                "on-primary": "#ffffff",
+                "tertiary-container": "#002615",
+                "dark-red": "#9F172B",
+                "on-surface": "#191c1e",
+                "on-primary-fixed": "#041a3f",
+                "deep-navy": "#06152F",
+                "outline-variant": "#c5c6cf",
+                "secondary-fixed-dim": "#ffb3b2",
+                "inverse-on-surface": "#eff1f4",
+                "on-tertiary-fixed-variant": "#005233",
+                "on-secondary": "#ffffff",
+                "tertiary-fixed-dim": "#73daa4",
+                "error-container": "#ffdad6",
+                "on-secondary-container": "#fffbff",
+                "tertiary": "#000b04",
+                "primary-fixed": "#d9e2ff",
+                "on-secondary-fixed": "#410008",
+                "primary-fixed-dim": "#b4c6f4",
+                "tertiary-fixed": "#8ff7bf",
+                "secondary-fixed": "#ffdad9",
+                "secondary": "#b80d2d",
+                "on-background": "#191c1e"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+              },
+              "spacing": {
+                "gutter": "24px",
+                "margin-desktop": "48px",
+                "margin-mobile": "16px",
+                "container-max": "1280px",
+                "unit": "8px"
+              },
+              "fontFamily": {
+                "body-lg": ["Inter"],
+                "body-md": ["Inter"],
+                "headline-md": ["Plus Jakarta Sans"],
+                "headline-xl": ["Plus Jakarta Sans"],
+                "receipt-code": ["JetBrains Mono"],
+                "headline-lg-mobile": ["Plus Jakarta Sans"],
+                "body-sm": ["Inter"],
+                "label-caps": ["Inter"],
+                "headline-lg": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "receipt-code": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { background-color: #f7f9fc; }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .animate-pulse-slow {
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopNavBar (Shared Component JSON) -->
+<header class="bg-surface-container-lowest dark:bg-surface-container-lowest border-b border-border-gray dark:border-outline-variant sticky top-0 z-50"><div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20"><div class="flex items-center gap-4"><img alt="DIGIMAT Logo" class="h-10 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLsg1uTZcASHvJR4ywcokKR0QXhnxYdev71OLUMsNTEePDI108XGHjRwUshCUJDyhQKp-ZR0CTs_ipxia55W0c4qZqaLEOmk62bmHnYJdjtDqXEhzWss5-GTon9FMmLu2jFODRiTMckge8MPaMBzrHgn9s6wyhV9PV0uj5C5R1lDR7pvY-QzqHH7ajGXnYKXO4m8LqMxRgLAHQwkOftACpGHjrH5iTp1m_NxjvPEZwk8Yu_7BeUUgZI6H27y"></div><nav class="hidden md:flex items-center gap-8"><a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Home</a><a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Features</a><div class="relative group"><button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps">Categories<span class="material-symbols-outlined text-sm">keyboard_arrow_down</span></button><div class="absolute left-0 top-full pt-2 hidden group-hover:block z-50"><div class="bg-white border border-border-gray rounded-lg shadow-lg py-2 w-64"><a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-soft-blue-bg hover:text-primary transition-colors">Professional Associations</a><a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-soft-blue-bg hover:text-primary transition-colors">Education</a><a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-soft-blue-bg hover:text-primary transition-colors">Governments</a><a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-soft-blue-bg hover:text-primary transition-colors">Political Parties</a></div></div></div><a class="text-primary font-bold border-b-2 border-primary font-label-caps text-label-caps" href="#">Results</a><a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Help</a></nav><div class="flex items-center gap-4"><button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps px-2"><span class="material-symbols-outlined text-[20px]">language</span><span class="text-xs">EN / नेपाली</span></button><button class="px-4 py-2 border border-primary text-primary font-bold rounded-lg hover:bg-soft-blue-bg transition-colors font-label-caps text-label-caps">Sign In</button><button class="px-6 py-2 bg-primary text-on-primary font-bold rounded-lg hover:opacity-80 transition-opacity font-label-caps text-label-caps">Request Demo</button></div></div></header>
+<main class="max-w-container-max mx-auto px-margin-desktop py-12">
+<!-- Dashboard Header -->
+<div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-on-tertiary-container animate-pulse-slow"></span>
+                        LIVE COUNTING
+                    </span>
+<span class="text-on-surface-variant font-label-caps text-label-caps">ELECTION ID: NP-2024-FED</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-primary mb-2">2024 Federal Representative Elections</h1>
+<div class="flex items-center gap-4 text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+                        Polling Date: Nov 24, 2024
+                    </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">update</span>
+                        Last Updated: 14:32:05 NPT
+                    </span>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 border border-border-gray bg-white rounded hover:bg-soft-blue-bg transition-colors font-label-caps text-label-caps">
+<span class="material-symbols-outlined">download</span> Export Data
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 border border-border-gray bg-white rounded hover:bg-soft-blue-bg transition-colors font-label-caps text-label-caps">
+<span class="material-symbols-outlined">share</span> Share Results
+                </button>
+</div>
+</div>
+<!-- Key Stats Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+<div class="bg-white border border-border-gray p-6 rounded-xl shadow-sm">
+<p class="text-on-surface-variant font-label-caps text-label-caps mb-1">Voter Turnout</p>
+<h3 class="text-headline-lg font-headline-lg text-primary">68.4%</h3>
+<div class="w-full bg-surface-container h-2 rounded-full mt-4 overflow-hidden">
+<div class="bg-secondary h-full" style="width: 68.4%"></div>
+</div>
+<p class="text-[12px] text-on-surface-variant mt-2 font-body-sm">18.2M of 26.5M Registered</p>
+</div>
+<div class="bg-white border border-border-gray p-6 rounded-xl shadow-sm">
+<p class="text-on-surface-variant font-label-caps text-label-caps mb-1">Ballots Counted</p>
+<h3 class="text-headline-lg font-headline-lg text-primary">12,455,201</h3>
+<div class="flex items-center gap-2 mt-4 text-on-tertiary-container font-bold text-xs bg-tertiary-fixed/30 px-2 py-1 rounded w-fit">
+<span class="material-symbols-outlined text-sm">verified</span> Verified Secure
+                </div>
+</div>
+<div class="bg-white border border-border-gray p-6 rounded-xl shadow-sm">
+<p class="text-on-surface-variant font-label-caps text-label-caps mb-1">Counting Progress</p>
+<h3 class="text-headline-lg font-headline-lg text-primary">45.2%</h3>
+<div class="w-full bg-surface-container h-2 rounded-full mt-4 overflow-hidden">
+<div class="bg-primary h-full" style="width: 45.2%"></div>
+</div>
+<p class="text-[12px] text-on-surface-variant mt-2 font-body-sm">74/165 Constituencies Reported</p>
+</div>
+<div class="bg-white border border-border-gray p-6 rounded-xl shadow-sm">
+<p class="text-on-surface-variant font-label-caps text-label-caps mb-1">Spoilt Ballots</p>
+<h3 class="text-headline-lg font-headline-lg text-primary">1.2%</h3>
+<div class="flex items-center gap-2 mt-4 text-secondary font-bold text-xs bg-secondary-fixed/50 px-2 py-1 rounded w-fit">
+<span class="material-symbols-outlined text-sm">warning</span> Low Anomaly Rate
+                </div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Geographic Visualization -->
+<div class="lg:col-span-7 flex flex-col gap-8">
+<div class="bg-white border border-border-gray p-8 rounded-xl shadow-sm">
+<div class="flex justify-between items-center mb-8">
+<h2 class="font-headline-md text-headline-md text-primary">Geographic Result Distribution</h2>
+<div class="flex gap-2">
+<button class="bg-soft-blue-bg px-3 py-1 text-xs font-bold rounded">National</button>
+<button class="px-3 py-1 text-xs font-bold rounded hover:bg-surface-container">Provincial</button>
+<button class="px-3 py-1 text-xs font-bold rounded hover:bg-surface-container">District</button>
+</div>
+</div>
+<!-- Map Placeholder -->
+<div class="relative bg-surface-container-low rounded-lg aspect-video flex items-center justify-center overflow-hidden group">
+<div class="absolute inset-0 bg-[radial-gradient(#d1d5db_1px,transparent_1px)] [background-size:20px_20px] opacity-30"></div>
+<img class="object-contain w-full h-full p-8 transition-transform duration-700 group-hover:scale-105" data-alt="A highly detailed, professional cartographic map of Nepal showing election results using a heat map visualization. Provinces are colored in shades of navy blue and deep red to indicate different political party leads. The map is minimalist and modern, with thin white borders and clean typography labels for key cities like Kathmandu and Pokhara. The lighting is bright and even, reinforcing the transparent and institutional feel of the DIGIMAT election dashboard." data-location="Nepal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCW2M2g4r15BzuSSiJ3tsv1b2pIgVxugia9TgMIVeYgpkB1Lnmje59htwD2otlp9saIDiIuceniQnceUY9Th_WXyfNWuWCLYtQpvqA_4LGyvJv81jsn-e1r5MYaQEB-_ztqEbqx3lTanoOaDr8DYUYBEo3Ljh6igyRWjpdLyPck4YcpWdjipK7-rOdiSkZw1SZ9UinVkI23JGUPwMjw4FrYdMI2bdLSi4S7RXL0uvqjQNxiabKSlefIaw">
+<div class="absolute bottom-6 left-6 bg-white/90 backdrop-blur p-4 rounded-lg border border-border-gray shadow-lg max-w-[200px]">
+<p class="font-bold text-primary mb-2 text-xs">Map Legend</p>
+<div class="space-y-2">
+<div class="flex items-center gap-2 text-[10px] uppercase font-bold">
+<span class="w-3 h-3 bg-primary rounded-sm"></span> Coalition A Lead
+                                </div>
+<div class="flex items-center gap-2 text-[10px] uppercase font-bold">
+<span class="w-3 h-3 bg-secondary rounded-sm"></span> Coalition B Lead
+                                </div>
+<div class="flex items-center gap-2 text-[10px] uppercase font-bold">
+<span class="w-3 h-3 bg-warning-gold rounded-sm"></span> Independent
+                                </div>
+<div class="flex items-center gap-2 text-[10px] uppercase font-bold">
+<span class="w-3 h-3 bg-surface-dim rounded-sm"></span> Pending Count
+                                </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Horizontal Bar Charts: Lead Candidates -->
+<div class="bg-white border border-border-gray p-8 rounded-xl shadow-sm">
+<h2 class="font-headline-md text-headline-md text-primary mb-6">Vote Share by Coalition</h2>
+<div class="space-y-8">
+<div>
+<div class="flex justify-between items-end mb-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">A</div>
+<div>
+<p class="font-bold text-primary">Democratic Socialist Alliance</p>
+<p class="text-xs text-on-surface-variant uppercase font-bold tracking-wider">Coalition Leader: Rajesh Hamal</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-headline-md font-headline-md text-primary">38.2%</p>
+<p class="text-xs text-on-surface-variant">4,757,886 Votes</p>
+</div>
+</div>
+<div class="w-full h-4 bg-surface-container rounded-full overflow-hidden">
+<div class="bg-primary h-full transition-all duration-1000 ease-out" style="width: 38.2%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-end mb-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white font-bold">B</div>
+<div>
+<p class="font-bold text-primary">Federal People's Front</p>
+<p class="text-xs text-on-surface-variant uppercase font-bold tracking-wider">Coalition Leader: Sunita Shrestha</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-headline-md font-headline-md text-primary">31.5%</p>
+<p class="text-xs text-on-surface-variant">3,923,388 Votes</p>
+</div>
+</div>
+<div class="w-full h-4 bg-surface-container rounded-full overflow-hidden">
+<div class="bg-secondary h-full transition-all duration-1000 ease-out" style="width: 31.5%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-end mb-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-warning-gold flex items-center justify-center text-white font-bold">I</div>
+<div>
+<p class="font-bold text-primary">United Independent Bloc</p>
+<p class="text-xs text-on-surface-variant uppercase font-bold tracking-wider">Various Representatives</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-headline-md font-headline-md text-primary">15.8%</p>
+<p class="text-xs text-on-surface-variant">1,967,921 Votes</p>
+</div>
+</div>
+<div class="w-full h-4 bg-surface-container rounded-full overflow-hidden">
+<div class="bg-warning-gold h-full transition-all duration-1000 ease-out" style="width: 15.8%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Detailed Table & Audit Info -->
+<div class="lg:col-span-5 flex flex-col gap-8">
+<!-- Top Candidates Table -->
+<div class="bg-white border border-border-gray rounded-xl shadow-sm overflow-hidden flex flex-col h-full">
+<div class="p-6 border-b border-border-gray">
+<h2 class="font-headline-md text-headline-md text-primary">Top Candidates</h2>
+<p class="text-body-sm text-on-surface-variant">National summary across all constituencies</p>
+</div>
+<div class="overflow-x-auto flex-grow">
+<table class="w-full text-left">
+<thead class="bg-soft-blue-bg border-b border-border-gray">
+<tr>
+<th class="px-6 py-4 font-label-caps text-label-caps text-primary">Rank</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-primary">Candidate</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-primary">Votes</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-primary">Share</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-gray">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-receipt-code text-receipt-code">#01</td>
+<td class="px-6 py-4">
+<p class="font-bold text-primary">Rajesh Hamal</p>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold">Democratic Socialist</p>
+</td>
+<td class="px-6 py-4 font-receipt-code text-receipt-code">2,104,552</td>
+<td class="px-6 py-4 font-bold text-primary">16.9%</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-receipt-code text-receipt-code">#02</td>
+<td class="px-6 py-4">
+<p class="font-bold text-primary">Sunita Shrestha</p>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold">People's Front</p>
+</td>
+<td class="px-6 py-4 font-receipt-code text-receipt-code">1,855,102</td>
+<td class="px-6 py-4 font-bold text-primary">14.9%</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-receipt-code text-receipt-code">#03</td>
+<td class="px-6 py-4">
+<p class="font-bold text-primary">Bimal Adhikari</p>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold">Independent</p>
+</td>
+<td class="px-6 py-4 font-receipt-code text-receipt-code">942,005</td>
+<td class="px-6 py-4 font-bold text-primary">7.6%</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-receipt-code text-receipt-code">#04</td>
+<td class="px-6 py-4">
+<p class="font-bold text-primary">Priya Thapa</p>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold">Unity Party</p>
+</td>
+<td class="px-6 py-4 font-receipt-code text-receipt-code">712,443</td>
+<td class="px-6 py-4 font-bold text-primary">5.7%</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-receipt-code text-receipt-code">#05</td>
+<td class="px-6 py-4">
+<p class="font-bold text-primary">Deepak Rai</p>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold">Democratic Socialist</p>
+</td>
+<td class="px-6 py-4 font-receipt-code text-receipt-code">688,990</td>
+<td class="px-6 py-4 font-bold text-primary">5.5%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-6 bg-surface-container-low border-t border-border-gray">
+<button class="w-full py-3 bg-white border border-border-gray text-primary font-bold rounded hover:bg-soft-blue-bg transition-colors flex items-center justify-center gap-2">
+                            View All Candidates (1,452) <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Transparency & Audit Box -->
+<div class="bg-primary-container text-white p-8 rounded-xl shadow-sm relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-tertiary-fixed text-3xl">verified_user</span>
+<h3 class="font-headline-md text-headline-md text-tertiary-fixed">Security Verified</h3>
+</div>
+<p class="text-on-primary-container body-md mb-6 leading-relaxed">
+                            Every ballot shown here is backed by an immutable cryptographic hash. Our multi-signature verification process ensures that once a vote is cast and audited by district officials, it cannot be altered.
+                        </p>
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between p-3 bg-white/10 rounded border border-white/10">
+<span class="font-label-caps text-label-caps opacity-70 uppercase">Blockchain Height</span>
+<span class="font-receipt-code text-receipt-code text-tertiary-fixed">#844,291,012</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-white/10 rounded border border-white/10">
+<span class="font-label-caps text-label-caps opacity-70 uppercase">Network Health</span>
+<span class="flex items-center gap-2 text-tertiary-fixed font-bold text-xs">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed"></span> 100% ONLINE
+                                </span>
+</div>
+</div>
+</div>
+<!-- Decorative Element -->
+<div class="absolute -bottom-10 -right-10 opacity-10">
+<span class="material-symbols-outlined text-[200px]">shield</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component JSON) -->
+<footer class="bg-surface-container-high dark:bg-surface-dim border-t border-border-gray dark:border-outline mt-20">
+<div class="w-full py-12 px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter max-w-container-max mx-auto">
+<div class="col-span-1">
+<div class="flex items-center gap-3 mb-6">
+<img alt="DIGIMAT Logo" class="h-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2bBJ885iLrPQg4w945TrKhXWo0m5HD-2dCoLhyLlffmAyJHcLrN5GkTUTfPG8cbhqIdfUEaayuhFUiCF7rVNXGhrCzX7PiwXEnqzFkEOt5o5PHEaRr9RF_x2RSnc7KraH9KdP1Y7HQNJ_hl3rPiri48Vp-jZihogqVnnP4g-gDbMT-0fQrgJxyms-kkSGXtmCDayvI-IJBPm64kwzRF20QVrtd68Fh2hvOtqsyN4lqiCMxyK652eZsA">
+<span class="font-headline-md text-headline-md text-primary">DIGIMAT</span>
+</div>
+<p class="text-on-surface-variant font-body-sm text-body-sm mb-6">
+                    DIGIMAT is Nepal's trusted electronic electoral platform, bringing transparency and integrity to the democratic process through technology.
+                </p>
+<p class="text-primary dark:text-on-surface font-body-sm text-body-sm">
+                    © 2024 DIGIMAT. Secure Electoral Infrastructure of Nepal.
+                </p>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-primary mb-6 uppercase tracking-widest">Platform</h4>
+<ul class="space-y-4">
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-colors font-body-sm" href="#">About</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-colors font-body-sm" href="#">For Voters</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-colors font-body-sm" href="#">For Organizations</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-primary mb-6 uppercase tracking-widest">Support</h4>
+<ul class="space-y-4">
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-colors font-body-sm" href="#">Help Center</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-colors font-body-sm" href="#">Audit Reports</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-colors font-body-sm" href="#">Contact Support</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-primary mb-6 uppercase tracking-widest">Legal</h4>
+<ul class="space-y-4">
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-colors font-body-sm" href="#">Legal</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-colors font-body-sm" href="#">Privacy Policy</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-secondary transition-colors font-body-sm" href="#">Data Ethics</a></li>
+</ul>
+</div>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for the map area
+        document.querySelector('.group').addEventListener('mousemove', (e) => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            e.currentTarget.style.setProperty('--x', `${x}%`);
+            e.currentTarget.style.setProperty('--y', `${y}%`);
+        });
+
+        // Simulate real-time updates for timestamp
+        setInterval(() => {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            // This is a placeholder for real updating logic
+        }, 1000);
+    </script>
+
+
+
+
+</body></html>

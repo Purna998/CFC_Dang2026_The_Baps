@@ -1,0 +1,551 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>DIGIMAT - How It Works | Secure Electoral Infrastructure</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Shared Components Logic: Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e6e8eb",
+                        "border-gray": "#DDE4EC",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#00081e",
+                        "on-primary-container": "#7687b2",
+                        "on-surface-variant": "#44464e",
+                        "on-tertiary-fixed": "#002112",
+                        "secondary-container": "#dc2f42",
+                        "inverse-surface": "#2d3133",
+                        "outline": "#75777f",
+                        "surface-tint": "#4c5e86",
+                        "surface-variant": "#e0e3e6",
+                        "surface-container": "#eceef1",
+                        "surface-bright": "#f7f9fc",
+                        "on-secondary-fixed-variant": "#920020",
+                        "primary-container": "#0a1f44",
+                        "background": "#f7f9fc",
+                        "inverse-primary": "#b4c6f4",
+                        "surface-container-highest": "#e0e3e6",
+                        "surface": "#f7f9fc",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#34466d",
+                        "surface-container-low": "#f2f4f7",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#2c9969",
+                        "warning-gold": "#D99A21",
+                        "surface-dim": "#d8dadd",
+                        "soft-blue-bg": "#EEF3F9",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#002615",
+                        "dark-red": "#9F172B",
+                        "on-surface": "#191c1e",
+                        "on-primary-fixed": "#041a3f",
+                        "deep-navy": "#06152F",
+                        "outline-variant": "#c5c6cf",
+                        "secondary-fixed-dim": "#ffb3b2",
+                        "inverse-on-surface": "#eff1f4",
+                        "on-tertiary-fixed-variant": "#005233",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#73daa4",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#fffbff",
+                        "tertiary": "#000b04",
+                        "primary-fixed": "#d9e2ff",
+                        "on-secondary-fixed": "#410008",
+                        "primary-fixed-dim": "#b4c6f4",
+                        "tertiary-fixed": "#8ff7bf",
+                        "secondary-fixed": "#ffdad9",
+                        "secondary": "#b80d2d",
+                        "on-background": "#191c1e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-desktop": "48px",
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "receipt-code": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "receipt-code": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pattern-bg {
+            background-color: #f7f9fc;
+            background-image: radial-gradient(#DDE4EC 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+        .workflow-step:hover .step-number {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-surface-container-lowest border-b border-border-gray sticky top-0 z-50">
+<nav class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20"><div class="flex items-center gap-4">
+  <img alt="DIGIMAT Logo" class="h-10" src="https://lh3.googleusercontent.com/aida/AP1WRLsg1uTZcASHvJR4ywcokKR0QXhnxYdev71OLUMsNTEePDI108XGHjRwUshCUJDyhQKp-ZR0CTs_ipxia55W0c4qZqaLEOmk62bmHnYJdjtDqXEhzWss5-GTon9FMmLu2jFODRiTMckge8MPaMBzrHgn9s6wyhV9PV0uj5C5R1lDR7pvY-QzqHH7ajGXnYKXO4m8LqMxRgLAHQwkOftACpGHjrH5iTp1m_NxjvPEZwk8Yu_7BeUUgZI6H27y">
+</div>
+<div class="hidden md:flex items-center gap-8">
+  <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Home</a>
+  <a class="text-primary font-bold border-b-2 border-primary font-label-caps text-label-caps" href="#">Features</a>
+  <div class="relative group">
+    <button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps">
+      Categories
+      <span class="material-symbols-outlined text-xs">keyboard_arrow_down</span>
+    </button>
+    <div class="absolute top-full left-0 mt-2 w-64 bg-white border border-border-gray shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 py-2">
+      <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-soft-blue-bg hover:text-primary transition-colors">Professional Associations &amp; Societies</a>
+      <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-soft-blue-bg hover:text-primary transition-colors">Education</a>
+      <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-soft-blue-bg hover:text-primary transition-colors">Unions</a>
+      <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-soft-blue-bg hover:text-primary transition-colors">Governments</a>
+      <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-soft-blue-bg hover:text-primary transition-colors">Political Parties</a>
+      <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-soft-blue-bg hover:text-primary transition-colors">Cooperatives and Credit Unions</a>
+      <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-soft-blue-bg hover:text-primary transition-colors">Condos &amp; HOAs</a>
+      <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-soft-blue-bg hover:text-primary transition-colors">Corporate &amp; Shareholder</a>
+      <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-soft-blue-bg hover:text-primary transition-colors">First Nations</a>
+      <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-soft-blue-bg hover:text-primary transition-colors">Sports &amp; Leisure Clubs</a>
+      <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-soft-blue-bg hover:text-primary transition-colors">Membership Organizations</a>
+    </div>
+  </div>
+  <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Results</a>
+  <a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Help</a>
+</div>
+<div class="flex items-center gap-4">
+  <div class="flex items-center gap-2 px-3 py-1 border border-border-gray rounded text-xs font-bold text-on-surface-variant">
+    <span class="text-primary cursor-pointer">EN</span>
+    <span class="text-border-gray">|</span>
+    <span class="hover:text-primary cursor-pointer">नेपाली</span>
+  </div>
+  <button class="px-4 py-2 border border-primary text-primary font-label-caps text-label-caps hover:bg-soft-blue-bg transition-colors">Sign In</button>
+  <button class="px-6 py-2 bg-primary text-on-primary font-label-caps text-label-caps hover:opacity-90 transition-opacity">Request Demo</button>
+</div></nav>
+</header>
+<main class="min-h-screen">
+<!-- Hero Section -->
+<section class="py-20 px-margin-desktop bg-surface-container-low pattern-bg">
+<div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
+<div>
+<h1 class="font-headline-xl text-headline-xl text-primary mb-6">Institutional Integrity, <br><span class="text-secondary">Digitally Transformed</span></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-xl">
+                        A rigorous 12-step validation process ensures that every vote is accounted for, every voter is verified, and every result is mathematically infallible.
+                    </p>
+<div class="flex gap-4">
+<a class="px-8 py-4 bg-primary text-on-primary font-bold rounded-lg shadow-sm hover:translate-y-[-2px] transition-transform flex items-center gap-2" href="#voter-workflow">
+<span class="material-symbols-outlined">how_to_vote</span>
+                            Voter Journey
+                        </a>
+<a class="px-8 py-4 border-2 border-primary text-primary font-bold rounded-lg hover:bg-soft-blue-bg transition-colors flex items-center gap-2" href="#admin-workflow">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+                            Admin Governance
+                        </a>
+</div>
+</div>
+<div class="relative">
+<div class="rounded-xl border border-border-gray overflow-hidden shadow-xl bg-white aspect-video relative group">
+<img class="w-full h-full object-cover" data-alt="A clean, sophisticated administrative dashboard for a national election commission, showing secure encryption keys and voter turnout graphs in a dark navy and soft blue color palette. The UI is professional, government-grade, and minimalist." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyph7BMyuajzgwh4GoCSW12Sfz1kiCAVA31lgFYPchk2sPGzfvI-CPtrgrVMFwCXxRqcaMavkB0zW_bxaqujKBU08uSQjm9xmYhTDY9RE_RSDNd901d53j2zcuxq1_7-R6nfkWSG6E2wWfnYFvJ8v5M3JezA_7Dtb6EPnAuEKUyNTm15iTPytC0AbVd_Q4cvPhE4djf0ObvNqapNMJXCqfUiyEtlaeQ46BO7sdzi-2umVEUCoGqbwl5g">
+<div class="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors pointer-events-none"></div>
+</div>
+<div class="absolute -bottom-8 -left-8 p-6 bg-white border border-border-gray shadow-lg rounded-xl max-w-xs">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-tertiary-container">verified</span>
+<span class="font-label-caps text-label-caps text-primary">Security Verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">End-to-end encryption compliant with International Election Integrity Standards.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Voter Workflow Section -->
+<section class="py-24 px-margin-desktop bg-white" id="voter-workflow">
+<div class="max-w-container-max mx-auto">
+<div class="mb-16 text-center max-w-3xl mx-auto">
+<span class="text-secondary font-label-caps text-label-caps tracking-widest uppercase mb-4 block">Process Documentation</span>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6">The Voter Journey</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">A seamless, secure path for citizens to exercise their democratic right with total confidence in the privacy and accuracy of their ballot.</p>
+</div>
+<!-- 12-Step Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Step 1 -->
+<div class="workflow-step p-8 border border-border-gray rounded-xl hover:bg-surface-container-low transition-colors">
+<div class="w-12 h-12 bg-soft-blue-bg flex items-center justify-center rounded-lg mb-6 step-number transition-transform">
+<span class="material-symbols-outlined text-primary">mail</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2 text-lg">01 Invitation</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Voters receive a unique, encrypted digital invitation via registered email or SMS.</p>
+</div>
+<!-- Step 2 -->
+<div class="workflow-step p-8 border border-border-gray rounded-xl hover:bg-surface-container-low transition-colors">
+<div class="w-12 h-12 bg-soft-blue-bg flex items-center justify-center rounded-lg mb-6 step-number transition-transform">
+<span class="material-symbols-outlined text-primary">login</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2 text-lg">02 Portal Access</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Secure authentication through the dedicated DIGIMAT national portal.</p>
+</div>
+<!-- Step 3 -->
+<div class="workflow-step p-8 border border-border-gray rounded-xl hover:bg-surface-container-low transition-colors">
+<div class="w-12 h-12 bg-soft-blue-bg flex items-center justify-center rounded-lg mb-6 step-number transition-transform">
+<span class="material-symbols-outlined text-primary">fingerprint</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2 text-lg">03 Verify Identity</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Multi-factor biometric or government ID verification ensures eligible voter status.</p>
+</div>
+<!-- Step 4 -->
+<div class="workflow-step p-8 border border-border-gray rounded-xl hover:bg-surface-container-low transition-colors">
+<div class="w-12 h-12 bg-soft-blue-bg flex items-center justify-center rounded-lg mb-6 step-number transition-transform">
+<span class="material-symbols-outlined text-primary">how_to_reg</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2 text-lg">04 Select Election</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Choose from active ballots assigned to your specific constituency or organization.</p>
+</div>
+<!-- Step 5 -->
+<div class="workflow-step p-8 border border-border-gray rounded-xl hover:bg-surface-container-low transition-colors">
+<div class="w-12 h-12 bg-soft-blue-bg flex items-center justify-center rounded-lg mb-6 step-number transition-transform">
+<span class="material-symbols-outlined text-primary">info</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2 text-lg">05 Instructions</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Review clear, bilingual guidelines on how to cast a valid digital ballot.</p>
+</div>
+<!-- Step 6 -->
+<div class="workflow-step p-8 border border-border-gray rounded-xl hover:bg-surface-container-low transition-colors">
+<div class="w-12 h-12 bg-soft-blue-bg flex items-center justify-center rounded-lg mb-6 step-number transition-transform">
+<span class="material-symbols-outlined text-primary">groups</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2 text-lg">06 Candidates</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Explore detailed profiles, manifestos, and affiliations for each candidate.</p>
+</div>
+<!-- Step 7 -->
+<div class="workflow-step p-8 border border-border-gray rounded-xl hover:bg-surface-container-low transition-colors">
+<div class="w-12 h-12 bg-soft-blue-bg flex items-center justify-center rounded-lg mb-6 step-number transition-transform">
+<span class="material-symbols-outlined text-primary">touch_app</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2 text-lg">07 Vote Selection</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Electronically mark your choices with high-contrast selection feedback.</p>
+</div>
+<!-- Step 8 -->
+<div class="workflow-step p-8 border border-border-gray rounded-xl hover:bg-surface-container-low transition-colors">
+<div class="w-12 h-12 bg-soft-blue-bg flex items-center justify-center rounded-lg mb-6 step-number transition-transform">
+<span class="material-symbols-outlined text-primary">preview</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2 text-lg">08 Confirm Choices</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">A final summary page to verify your intent before committing the vote.</p>
+</div>
+<!-- Step 9 -->
+<div class="workflow-step p-8 border border-border-gray rounded-xl hover:bg-surface-container-low transition-colors">
+<div class="w-12 h-12 bg-soft-blue-bg flex items-center justify-center rounded-lg mb-6 step-number transition-transform">
+<span class="material-symbols-outlined text-primary">lock</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2 text-lg">09 Cast Vote</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Your vote is encrypted and transmitted securely to the digital vault.</p>
+</div>
+<!-- Step 10 -->
+<div class="workflow-step p-8 border border-border-gray rounded-xl hover:bg-surface-container-low transition-colors">
+<div class="w-12 h-12 bg-soft-blue-bg flex items-center justify-center rounded-lg mb-6 step-number transition-transform">
+<span class="material-symbols-outlined text-primary">receipt_long</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2 text-lg">10 Digital Receipt</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">An anonymous receipt is generated, containing a unique verification hash.</p>
+</div>
+<!-- Step 11 -->
+<div class="workflow-step p-8 border border-border-gray rounded-xl hover:bg-surface-container-low transition-colors">
+<div class="w-12 h-12 bg-soft-blue-bg flex items-center justify-center rounded-lg mb-6 step-number transition-transform">
+<span class="material-symbols-outlined text-primary">fact_check</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2 text-lg">11 Verify Receipt</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Use your receipt to verify that your specific ballot has been recorded and counted.</p>
+</div>
+<!-- Step 12 -->
+<div class="workflow-step p-8 border border-border-gray rounded-xl hover:bg-surface-container-low transition-colors">
+<div class="w-12 h-12 bg-soft-blue-bg flex items-center justify-center rounded-lg mb-6 step-number transition-transform">
+<span class="material-symbols-outlined text-primary">analytics</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2 text-lg">12 View Results</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Access public dashboards once the election window is officially closed.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Diagram Interlude -->
+<section class="py-20 bg-deep-navy text-on-primary">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="flex flex-col lg:flex-row items-center gap-16">
+<div class="lg:w-1/2">
+<h3 class="font-headline-lg text-headline-lg mb-6">Cryptographic Anonymity</h3>
+<p class="font-body-lg text-body-lg text-primary-fixed mb-8 opacity-80">Our proprietary double-blind encryption ensures that while we verify WHO can vote, the system never links specific voters to their specific choices. This maintains the absolute sanctity of the secret ballot.</p>
+<ul class="space-y-4">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary-container">check_circle</span>
+<span class="">Blockchain-backed audit trails</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary-container">check_circle</span>
+<span class="">Homomorphic encryption for tallying</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary-container">check_circle</span>
+<span class="">Zero-knowledge proof validation</span>
+</li>
+</ul>
+</div>
+<div class="lg:w-1/2 w-full">
+<div class="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-sm">
+<img class="w-full h-auto rounded-lg shadow-2xl" data-alt="A technical architectural diagram illustrating the encryption flow of a digital vote. It shows the voter's ID being decoupled from the ballot, passing through an anonymizing proxy, and being stored in a decentralized ledger. The style is professional technical illustration with thin glowing lines and blueprint motifs." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZQhtSnRts1wavFDcSjAEIjxpdeUqxH0UOIL9C955S2IEhAwkT8LlAoffDP_J_t8a2QHn8a2csrt6fnmxouHkpEDoFdS9tO0Or9goQSmhC5hcyIN0b7Lli8PfdKZlfKg26HMor6w2a_o0gXqUjhej-G5yj5il7d2EoqgrwIZXzI5rTJdGVL0PnWPY8f8QPZe9-4SjNTYryRZbB5NVIv0S1v73Xok68jJWTVwjwbtNL4Oq08naV9__Chw">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Admin Workflow Section -->
+<section class="py-24 px-margin-desktop bg-surface-container-low" id="admin-workflow">
+<div class="max-w-container-max mx-auto">
+<div class="mb-16">
+<span class="text-secondary font-label-caps text-label-caps tracking-widest uppercase mb-4 block">Administrative Governance</span>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6">Election Management Lifecycle</h2>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Steps 1-4 -->
+<div class="space-y-6">
+<div class="bg-white p-6 border border-border-gray rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<span class="inline-block px-3 py-1 bg-soft-blue-bg text-primary font-bold rounded mb-4 text-xs">PHASE 01: SETUP</span>
+<div class="flex gap-4">
+<div class="font-headline-md text-secondary opacity-50">01</div>
+<div>
+<h4 class="font-bold text-primary">Organization Setup</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Configure branding, legal entities, and authorized admin permissions.</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-6 border border-border-gray rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex gap-4">
+<div class="font-headline-md text-secondary opacity-50">02</div>
+<div>
+<h4 class="font-bold text-primary">Import Voters</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Upload registry via secure API or encrypted CSV with duplicate detection.</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-6 border border-border-gray rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex gap-4">
+<div class="font-headline-md text-secondary opacity-50">03</div>
+<div>
+<h4 class="font-bold text-primary">Create Election</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Define election title, purpose, and regional jurisdiction parameters.</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-6 border border-border-gray rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex gap-4">
+<div class="font-headline-md text-secondary opacity-50">04</div>
+<div>
+<h4 class="font-bold text-primary">Ballot Design</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Construct multi-question ballots with support for ranking or simple choice.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Center Column: Steps 5-8 -->
+<div class="space-y-6">
+<div class="bg-white p-6 border border-border-gray rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<span class="inline-block px-3 py-1 bg-soft-blue-bg text-primary font-bold rounded mb-4 text-xs">PHASE 02: CONFIGURATION</span>
+<div class="flex gap-4">
+<div class="font-headline-md text-secondary opacity-50">05</div>
+<div>
+<h4 class="font-bold text-primary">Candidate Registry</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Add names, photos, and party credentials for all eligible contenders.</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-6 border border-border-gray rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex gap-4">
+<div class="font-headline-md text-secondary opacity-50">06</div>
+<div>
+<h4 class="font-bold text-primary">Voter Groups</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Segment voters into precincts, wards, or specific organizational units.</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-6 border border-border-gray rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex gap-4">
+<div class="font-headline-md text-secondary opacity-50">07</div>
+<div>
+<h4 class="font-bold text-primary">Schedule Launch</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Set precise opening and closing times with automated countdown locks.</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-6 border border-border-gray rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex gap-4">
+<div class="font-headline-md text-secondary opacity-50">08</div>
+<div>
+<h4 class="font-bold text-primary">Invite Dispatch</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Trigger the bulk release of personalized secure voting invitations.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Steps 9-12 -->
+<div class="space-y-6">
+<div class="bg-white p-6 border border-border-gray rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<span class="inline-block px-3 py-1 bg-soft-blue-bg text-primary font-bold rounded mb-4 text-xs">PHASE 03: ANALYSIS</span>
+<div class="flex gap-4">
+<div class="font-headline-md text-secondary opacity-50">09</div>
+<div>
+<h4 class="font-bold text-primary">Monitor Turnout</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Track participation rates in real-time without viewing individual votes.</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-6 border border-border-gray rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex gap-4">
+<div class="font-headline-md text-secondary opacity-50">10</div>
+<div>
+<h4 class="font-bold text-primary">Close Election</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Official cessation of voting followed by automatic database snapshots.</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-6 border border-border-gray rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex gap-4">
+<div class="font-headline-md text-secondary opacity-50">11</div>
+<div>
+<h4 class="font-bold text-primary">Review &amp; Audit</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Independent auditors verify the cryptographic logs for zero tampering.</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-6 border border-border-gray rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex gap-4">
+<div class="font-headline-md text-secondary opacity-50">12</div>
+<div>
+<h4 class="font-bold text-primary">Publish Results</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Release certified election results to stakeholders and the public portal.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Admin UI Placeholder -->
+<div class="mt-20">
+<div class="rounded-2xl border border-border-gray overflow-hidden shadow-lg bg-white">
+<div class="bg-soft-blue-bg p-4 border-b border-border-gray flex items-center justify-between">
+<div class="flex gap-2">
+<div class="w-3 h-3 rounded-full bg-secondary-container"></div>
+<div class="w-3 h-3 rounded-full bg-warning-gold"></div>
+<div class="w-3 h-3 rounded-full bg-on-tertiary-container"></div>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Election Admin Control Center — Phase 02 Active</span>
+</div>
+<img class="w-full h-auto" data-alt="A detailed screen of the DIGIMAT admin interface showing the candidate registry management. It features a list of candidates with their photos, party logos, and edit buttons. The UI uses a soft blue and white color scheme with clear typography and professional 1px borders." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGhDTsPqAaBRoarFE5Mi1I-dGR0F4NSwFymFkZj9ay417U7etyFefDfaakMlkZ4q7EIbX91gLC2f5JMDWmh3jEORkoC-FVM7DF6owOs_0rFE8fAxQgwLesfUtlCBiK6TcyaAcJU6HC6gYa6iJHpVDLwzovW6hnne8eq5v2iHD1kaAdA1qIrx9enltLG_zf9y92CzlPY1p_OVJOfRRQ0rxiHKl3qJhUXO9-7gG6huzZctNDnw9Ucc8q3g">
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-24 px-margin-desktop bg-primary text-on-primary">
+<div class="max-w-container-max mx-auto text-center">
+<h2 class="font-headline-lg text-headline-lg mb-8">Ready to modernize your electoral process?</h2>
+<div class="flex flex-col sm:flex-row gap-6 justify-center">
+<button class="px-10 py-5 bg-secondary text-white font-bold rounded-lg hover:bg-dark-red transition-colors text-lg">Schedule a Platform Demo</button>
+<button class="px-10 py-5 bg-transparent border-2 border-primary-fixed text-primary-fixed font-bold rounded-lg hover:bg-white/10 transition-colors text-lg">Download Technical Whitepaper</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-surface-container-high border-t border-border-gray py-12 px-margin-desktop">
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="md:col-span-1">
+<div class="font-headline-md text-headline-md text-primary mb-4">DIGIMAT</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs">Secure Electoral Infrastructure of Nepal. Built for transparency and trust.</p>
+</div>
+<div>
+<h5 class="font-label-caps text-label-caps text-primary mb-6">Navigation</h5>
+<ul class="space-y-3">
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">About</a></li>
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">For Voters</a></li>
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">For Organizations</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-caps text-label-caps text-primary mb-6">Support</h5>
+<ul class="space-y-3">
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Help Center</a></li>
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Verification Guide</a></li>
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Audit Requests</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-caps text-label-caps text-primary mb-6">Legal</h5>
+<ul class="space-y-3">
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Privacy Policy</a></li>
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Terms of Service</a></li>
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Election Laws</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-container-max mx-auto mt-12 pt-8 border-t border-border-gray flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 DIGIMAT. Secure Electoral Infrastructure of Nepal.</p>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">qr_code_2</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">alternate_email</span>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for workflow steps
+        document.querySelectorAll('.workflow-step').forEach(step => {
+            step.addEventListener('mouseenter', () => {
+                const icon = step.querySelector('.material-symbols-outlined');
+                icon.style.transform = 'translateY(-2px)';
+                icon.style.transition = 'transform 0.2s ease';
+            });
+            step.addEventListener('mouseleave', () => {
+                const icon = step.querySelector('.material-symbols-outlined');
+                icon.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+
+
+
+
+</body></html>

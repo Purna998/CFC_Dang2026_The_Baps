@@ -1,0 +1,327 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Vote Submitted Successfully | DIGIMAT</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e6e8eb",
+                        "border-gray": "#DDE4EC",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#00081e",
+                        "on-primary-container": "#7687b2",
+                        "on-surface-variant": "#44464e",
+                        "on-tertiary-fixed": "#002112",
+                        "secondary-container": "#dc2f42",
+                        "inverse-surface": "#2d3133",
+                        "outline": "#75777f",
+                        "surface-tint": "#4c5e86",
+                        "surface-variant": "#e0e3e6",
+                        "surface-container": "#eceef1",
+                        "surface-bright": "#f7f9fc",
+                        "on-secondary-fixed-variant": "#920020",
+                        "primary-container": "#0a1f44",
+                        "background": "#f7f9fc",
+                        "inverse-primary": "#b4c6f4",
+                        "surface-container-highest": "#e0e3e6",
+                        "surface": "#f7f9fc",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#34466d",
+                        "surface-container-low": "#f2f4f7",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#2c9969",
+                        "warning-gold": "#D99A21",
+                        "surface-dim": "#d8dadd",
+                        "soft-blue-bg": "#EEF3F9",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#002615",
+                        "dark-red": "#9F172B",
+                        "on-surface": "#191c1e",
+                        "on-primary-fixed": "#041a3f",
+                        "deep-navy": "#06152F",
+                        "outline-variant": "#c5c6cf",
+                        "secondary-fixed-dim": "#ffb3b2",
+                        "inverse-on-surface": "#eff1f4",
+                        "on-tertiary-fixed-variant": "#005233",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#73daa4",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#fffbff",
+                        "tertiary": "#000b04",
+                        "primary-fixed": "#d9e2ff",
+                        "on-secondary-fixed": "#410008",
+                        "primary-fixed-dim": "#b4c6f4",
+                        "tertiary-fixed": "#8ff7bf",
+                        "secondary-fixed": "#ffdad9",
+                        "secondary": "#b80d2d",
+                        "on-background": "#191c1e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-desktop": "48px",
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "receipt-code": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "receipt-code": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .nepalese-pattern {
+            background-color: #f7f9fc;
+            background-image: radial-gradient(#DDE4EC 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .receipt-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        @media print {
+            .no-print { display: none; }
+            body { background: white; }
+            .print-container { width: 100%; border: none; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden min-h-screen flex flex-col nepalese-pattern">
+<!-- Header Section (TopNavBar Logic Implementation) -->
+<header class="bg-surface-container-lowest sticky top-0 z-50 border-b border-border-gray no-print">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-3">
+<img alt="DIGIMAT Logo" class="h-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2bBJ885iLrPQg4w945TrKhXWo0m5HD-2dCoLhyLlffmAyJHcLrN5GkTUTfPG8cbhqIdfUEaayuhFUiCF7rVNXGhrCzX7PiwXEnqzFkEOt5o5PHEaRr9RF_x2RSnc7KraH9KdP1Y7HQNJ_hl3rPiri48Vp-jZihogqVnnP4g-gDbMT-0fQrgJxyms-kkSGXtmCDayvI-IJBPm64kwzRF20QVrtd68Fh2hvOtqsyN4lqiCMxyK652eZsA">
+<span class="font-headline-md text-headline-md font-bold text-primary">DIGIMAT</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<div class="relative group">
+    <button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps uppercase tracking-wider">
+        Categories
+        <span class="material-symbols-outlined text-sm">keyboard_arrow_down</span>
+    </button>
+    <div class="absolute left-0 top-full pt-4 hidden group-hover:block z-50">
+        <div class="bg-surface-container-lowest border border-border-gray rounded-lg shadow-sm py-2 min-w-[280px] overflow-hidden">
+            <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Professional Associations &amp; Societies</a>
+            <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Education</a>
+            <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Unions</a>
+            <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Governments</a>
+            <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Political Parties</a>
+            <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Cooperatives and Credit Unions</a>
+            <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Condos &amp; HOAs</a>
+            <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Corporate &amp; Shareholder</a>
+            <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">First Nations</a>
+            <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Sports &amp; Leisure Clubs</a>
+            <a href="#" class="block px-4 py-2 text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Membership Organizations</a>
+        </div>
+    </div>
+</div>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps uppercase tracking-wider" href="#">Help</a>
+<div class="h-6 w-px bg-border-gray"></div>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-sm">person</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Administrator</span>
+</div>
+</nav>
+</div>
+</header>
+<main class="flex-grow flex items-center justify-center px-margin-mobile md:px-margin-desktop py-12">
+<div class="w-full max-w-2xl bg-surface-container-lowest border border-border-gray rounded-lg overflow-hidden receipt-shadow" style="opacity: 1; transform: translateY(0px); transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
+<!-- Success Branding Header -->
+<div class="bg-primary px-8 py-10 text-center relative overflow-hidden">
+<!-- Abstract National Motifs Background -->
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<svg height="100%" preserveAspectRatio="none" viewBox="0 0 100 100" width="100%">
+<path d="M0 0 L100 0 L100 100 L0 100 Z" fill="none" stroke="white" stroke-dasharray="2,2" stroke-width="0.5"></path>
+<circle cx="50" cy="50" fill="none" r="40" stroke="white" stroke-width="0.1"></circle>
+</svg>
+</div>
+<div class="relative z-10">
+<div class="inline-flex items-center justify-center w-20 h-20 bg-on-tertiary-container rounded-full mb-6">
+<span class="material-symbols-outlined text-on-tertiary text-5xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-primary mb-2">Ballot Submitted</h1>
+<p class="font-body-md text-body-md text-on-primary-container">Electoral integrity maintained via cryptographic verification.</p>
+</div>
+</div>
+<!-- Receipt Content -->
+<div class="px-8 md:px-12 py-10">
+<div class="space-y-8">
+<!-- Receipt Code Block -->
+<div class="bg-surface-container-low border border-border-gray p-6 rounded text-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-[0.2em] block mb-4">Official Receipt Code</span>
+<div class="bg-surface-container-lowest border-2 border-dashed border-border-gray p-4 mb-2">
+<span class="font-receipt-code text-receipt-code text-2xl md:text-3xl text-primary tracking-widest uppercase select-all" id="receipt-code">
+                                NPR-8821-X99Q-2024-KM
+                            </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Transaction Timestamp: 2024-11-05 14:22:08 Kathmandu (NPT)</p>
+</div>
+<!-- Meta Data Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="space-y-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Voter Identity</span>
+<p class="font-body-md text-body-md font-semibold">Anil K. Shrestha (Verified)</p>
+</div>
+<div class="space-y-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Election District</span>
+<p class="font-body-md text-body-md font-semibold">Bagmati - Kathmandu-1</p>
+</div>
+<div class="space-y-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Ballot Status</span>
+<div class="inline-flex items-center gap-2 px-2 py-1 bg-tertiary-fixed-dim/20 rounded">
+<span class="w-2 h-2 rounded-full bg-on-tertiary-container"></span>
+<span class="font-body-sm text-body-sm text-on-tertiary-fixed font-bold">LEGALLY ENROLLED</span>
+</div>
+</div>
+<div class="space-y-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Electoral Body</span>
+<p class="font-body-md text-body-md font-semibold">Election Commission Nepal</p>
+</div>
+</div>
+<!-- Privacy Note -->
+<div class="flex gap-4 p-4 bg-soft-blue-bg border-l-4 border-primary">
+<span class="material-symbols-outlined text-primary">security</span>
+<p class="font-body-sm text-body-sm text-primary-container leading-relaxed">
+<strong>Privacy Note:</strong> Your receipt confirms ballot submission but must not reveal your selected candidate. Keep this receipt code confidential. It can be used to audit your vote's inclusion in the final tally without compromising ballot secrecy.
+                        </p>
+</div>
+<!-- Action Buttons -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 no-print">
+<button class="flex items-center justify-center gap-2 bg-surface-container-highest hover:bg-surface-variant text-primary font-label-caps text-label-caps uppercase py-4 rounded-lg transition-all border border-border-gray" onclick="window.print()">
+<span class="material-symbols-outlined text-lg">print</span>
+                            Print Official Receipt
+                        </button>
+<button class="flex items-center justify-center gap-2 bg-surface-container-highest hover:bg-surface-variant text-primary font-label-caps text-label-caps uppercase py-4 rounded-lg transition-all border border-border-gray">
+<span class="material-symbols-outlined text-lg">download</span>
+                            Download PDF
+                        </button>
+<button class="flex items-center justify-center gap-2 bg-primary hover:bg-primary-container text-on-primary font-label-caps text-label-caps uppercase py-4 rounded-lg transition-all shadow-sm">
+<span class="material-symbols-outlined text-lg">verified</span>
+                            Verify Receipt
+                        </button>
+<a class="flex items-center justify-center gap-2 bg-surface-container-lowest hover:bg-surface-container text-primary font-label-caps text-label-caps uppercase py-4 rounded-lg transition-all border border-primary" href="#">
+<span class="material-symbols-outlined text-lg">dashboard</span>
+                            Return to Dashboard
+                        </a>
+</div>
+</div>
+</div>
+<!-- Receipt Footer / Anti-Counterfeit -->
+<div class="bg-surface-container-high px-8 py-4 border-t border-border-gray flex flex-col md:flex-row justify-between items-center gap-2">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">lock</span>
+<span class="font-label-caps text-[10px] uppercase">SHA-256 Verified Sequence</span>
+</div>
+<div class="text-[10px] font-label-caps text-on-surface-variant uppercase">
+                    © 2024 DIGIMAT. Nepal Electoral Services.
+                </div>
+</div>
+</div>
+</main>
+<!-- Global Footer (Footer JSON Logic) -->
+<footer class="bg-surface-container-high border-t border-border-gray no-print">
+<div class="w-full py-12 px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter max-w-container-max mx-auto">
+<div class="md:col-span-2">
+<div class="flex items-center gap-2 mb-4">
+<img alt="DIGIMAT" class="h-6 grayscale opacity-70" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2bBJ885iLrPQg4w945TrKhXWo0m5HD-2dCoLhyLlffmAyJHcLrN5GkTUTfPG8cbhqIdfUEaayuhFUiCF7rVNXGhrCzX7PiwXEnqzFkEOt5o5PHEaRr9RF_x2RSnc7KraH9KdP1Y7HQNJ_hl3rPiri48Vp-jZihogqVnnP4g-gDbMT-0fQrgJxyms-kkSGXtmCDayvI-IJBPm64kwzRF20QVrtd68Fh2hvOtqsyN4lqiCMxyK652eZsA">
+<span class="font-headline-md text-headline-md text-primary">DIGIMAT</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs mb-4">
+                    The official digital backbone for Nepal's secure, transparent, and inclusive electoral future. High-integrity voting infrastructure powered by cryptography.
+                </p>
+<div class="font-label-caps text-[11px] text-on-surface-variant uppercase tracking-tighter">
+                    © 2024 DIGIMAT. Secure Electoral Infrastructure of Nepal.
+                </div>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-primary uppercase mb-6">Quick Links</h4>
+<ul class="space-y-3">
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">About DIGIMAT</a></li>
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">For Voters</a></li>
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">For Organizations</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-primary uppercase mb-6">Support &amp; Legal</h4>
+<ul class="space-y-3">
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Legal Framework</a></li>
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Privacy Policy</a></li>
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Contact Support</a></li>
+</ul>
+</div>
+</div>
+</footer>
+<!-- Micro-interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const receiptCode = document.getElementById('receipt-code');
+            
+            // Add click-to-copy functionality for the receipt code
+            receiptCode.addEventListener('click', () => {
+                const text = receiptCode.innerText;
+                navigator.clipboard.writeText(text).then(() => {
+                    const originalText = text;
+                    receiptCode.innerText = "COPIED TO CLIPBOARD";
+                    receiptCode.classList.remove('text-primary');
+                    receiptCode.classList.add('text-on-tertiary-container');
+                    
+                    setTimeout(() => {
+                        receiptCode.innerText = originalText;
+                        receiptCode.classList.add('text-primary');
+                        receiptCode.classList.remove('text-on-tertiary-container');
+                    }, 2000);
+                });
+            });
+
+            // Entry animation trigger
+            const container = document.querySelector('main > div');
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(20px)';
+            container.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+            
+            setTimeout(() => {
+                container.style.opacity = '1';
+                container.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+
+
+</body></html>
