@@ -1,0 +1,43 @@
+# Rust
+target/
+**/*.rs.bk
+*.pdb
+Cargo.lock
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Node/Frontend
+node_modules/
+.next/
+out/
+build/
+dist/
+*.log
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Solana
+.anchor/
+test-ledger/
+.keys/
+
+# Documentation build artifacts
+docs/_build/
+*.pdf
+
+# OS
+Thumbs.db
