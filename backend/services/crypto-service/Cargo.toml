@@ -4,3 +4,30 @@ version.workspace = true
 edition.workspace = true
 
 [dependencies]
+# Cryptography
+aes-gcm = "0.10"
+ed25519-dalek = { version = "2.1", features = ["rand_core"] }
+x25519-dalek = { version = "2.0", features = ["static_secrets"] }
+sha2 = "0.10"
+rand = { workspace = true }
+
+# Encoding
+base64 = "0.22"
+hex = "0.4"
+
+# Serialization
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+# Error handling
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+
+# Tracing
+tracing = { workspace = true }
+
+# Utilities
+uuid = { workspace = true }
+
+# Internal dependencies
+eemp-error = { path = "../../shared/error" }
