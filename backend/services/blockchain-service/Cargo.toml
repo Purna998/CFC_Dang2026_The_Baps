@@ -4,3 +4,33 @@ version.workspace = true
 edition.workspace = true
 
 [dependencies]
+# Async runtime
+tokio = { workspace = true }
+
+# Serialization
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+# Solana
+solana-sdk = { workspace = true }
+solana-client = { workspace = true }
+
+# Error handling
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+
+# Tracing
+tracing = { workspace = true }
+
+# Utilities
+uuid = { workspace = true }
+chrono = { workspace = true }
+
+# Encoding
+base64 = { workspace = true }
+hex = { workspace = true }
+
+# Internal dependencies
+eemp-domain = { path = "../../shared/domain" }
+eemp-error = { path = "../../shared/error" }
+eemp-crypto-service = { path = "../crypto-service" }

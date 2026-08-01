@@ -1,6 +1,32 @@
 # EEMP Backend
 
-Rust backend for the Enterprise Election Management Platform.
+Production-ready Rust backend for the Enterprise Election Management Platform.
+
+## Quick Start
+
+```bash
+# 1. Install dependencies
+make install
+
+# 2. Setup environment and database
+make setup
+
+# 3. Start development server
+make dev
+```
+
+The API will be available at `http://localhost:8000`
+
+## Table of Contents
+
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Development](#development)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [API Documentation](#api-documentation)
+- [Project Structure](#project-structure)
 
 ## Architecture
 

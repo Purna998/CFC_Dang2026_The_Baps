@@ -75,6 +75,18 @@ reqwest = { version = "0.12", features = ["json", "rustls-tls"] }
 # TOTP (MFA)
 totp-rs = "5"
 
+# Encoding
+base64 = "0.22"
+hex = "0.4"
+
+# Solana SDK for blockchain
+solana-sdk = "1.18"
+solana-client = "1.18"
+anchor-client = "0.29"
+
+# Rate limiting
+governor = "0.6"
+
 # Configuration
 config = "0.14"
 
