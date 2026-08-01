@@ -1,0 +1,12 @@
+[package]
+name = "eemp-domain"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+uuid = { workspace = true }
+chrono = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+validator = { workspace = true }
+thiserror = { workspace = true }
