@@ -52,3 +52,6 @@ eemp-database = { path = "../../shared/database" }
 eemp-observability = { path = "../../shared/observability" }
 eemp-auth-service = { path = "../auth-service" }
 eemp-organization-service = { path = "../organization-service" }
+eemp-election-service = { path = "../election-service" }
+eemp-voting-service = { path = "../voting-service" }
+eemp-result-service = { path = "../result-service" }
