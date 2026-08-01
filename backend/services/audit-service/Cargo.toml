@@ -1,0 +1,6 @@
+[package]
+name = "eemp-audit-service"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]

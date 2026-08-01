@@ -1,0 +1,53 @@
+[package]
+name = "eemp-auth-service"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+# Web framework
+axum = { workspace = true }
+tokio = { workspace = true }
+tower = { workspace = true }
+tower-http = { workspace = true }
+
+# Serialization
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+# Database
+sqlx = { workspace = true }
+
+# Redis
+redis = { workspace = true }
+
+# Cryptography
+argon2 = { workspace = true }
+jsonwebtoken = { workspace = true }
+rand = { workspace = true }
+
+# Validation
+validator = { workspace = true }
+
+# Error handling
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+
+# Tracing
+tracing = { workspace = true }
+
+# Utilities
+chrono = { workspace = true }
+uuid = { workspace = true }
+
+# TOTP for MFA
+totp-rs = { version = "5.5", features = ["gen_secret", "otpauth"] }
+
+# Hashing
+sha2 = "0.10"
+
+# Internal dependencies
+eemp-domain = { path = "../../shared/domain" }
+eemp-error = { path = "../../shared/error" }
+eemp-config = { path = "../../shared/config" }
+eemp-database = { path = "../../shared/database" }
+eemp-observability = { path = "../../shared/observability" }
