@@ -11,7 +11,7 @@ members = [
     "services/result-service",
     "services/audit-service",
     "services/crypto-service",
-    "services/blockchain-service",
+    # "services/blockchain-service",  # Temporarily disabled due to Solana SDK conflicts
     "shared/domain",
     "shared/error",
     "shared/config",
@@ -80,9 +80,9 @@ totp-rs = "5"
 base64 = "0.22"
 hex = "0.4"
 
-# Solana SDK for blockchain (using latest 2.x for compatibility)
-solana-sdk = "2.0"
-solana-client = "2.0"
+# Solana SDK for blockchain (using stable 1.18.x for compatibility)
+solana-sdk = "1.18"
+solana-client = "1.18"
 anchor-client = "0.30"
 
 # Rate limiting

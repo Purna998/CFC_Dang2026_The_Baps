@@ -7,7 +7,9 @@
       "Bash(cargo check *)",
       "Bash(git rm *)",
       "Bash(cargo --version)",
-      "Bash(rustc --version)"
+      "Bash(rustc --version)",
+      "Bash(docker-compose up *)",
+      "Bash(cargo build *)"
     ]
   }
 }
