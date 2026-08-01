@@ -4,3 +4,29 @@ version.workspace = true
 edition.workspace = true
 
 [dependencies]
+# Async runtime
+tokio = { workspace = true }
+
+# Serialization
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+# Database
+sqlx = { workspace = true }
+
+# Error handling
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+
+# Tracing
+tracing = { workspace = true }
+
+# Utilities
+chrono = { workspace = true }
+uuid = { workspace = true }
+
+# Internal dependencies
+eemp-domain = { path = "../../shared/domain" }
+eemp-error = { path = "../../shared/error" }
+eemp-database = { path = "../../shared/database" }
+eemp-crypto-service = { path = "../crypto-service" }
