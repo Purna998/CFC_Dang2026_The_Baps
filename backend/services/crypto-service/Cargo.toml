@@ -6,6 +6,7 @@ edition.workspace = true
 [dependencies]
 # Cryptography
 aes-gcm = "0.10"
+# Using latest versions compatible with modern toolchain
 ed25519-dalek = { version = "2.1", features = ["rand_core"] }
 x25519-dalek = { version = "2.0", features = ["static_secrets"] }
 sha2 = "0.10"
