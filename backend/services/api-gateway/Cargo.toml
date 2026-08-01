@@ -51,3 +51,4 @@ eemp-config = { path = "../../shared/config" }
 eemp-database = { path = "../../shared/database" }
 eemp-observability = { path = "../../shared/observability" }
 eemp-auth-service = { path = "../auth-service" }
+eemp-organization-service = { path = "../organization-service" }
