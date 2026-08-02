@@ -11,7 +11,6 @@ use eemp_config::Config;
 use eemp_database::Database;
 use eemp_domain::{Email, Password, TenantId, UserId, UserRole};
 use eemp_error::{AppError, Result};
-use sqlx::PgPool;
 use std::sync::Arc;
 
 pub struct AuthService {
@@ -63,17 +62,17 @@ impl AuthService {
         .fetch_optional(self.db.pool())
         .await
         .map_err(|e| AppError::DatabaseError(format!("Database query failed: {}", e)))?
-        .ok_or_else(|| AppError::Unauthorized("Invalid email or password".to_string()))?;
+        .ok_or_else(|| AppError::InvalidToken)?;
 
         // Verify password
-        let password_hash = eemp_domain::PasswordHash::new(user_row.password_hash)?;
+        let password_hash = eemp_domain::PasswordHash::new(user_row.password_hash);
         let is_valid = self
             .password_hasher
             .verify_password(&password, &password_hash)?;
 
         if !is_valid {
             tracing::warn!(email = %email.as_str(), "Failed login attempt");
-            return Err(AppError::Unauthorized("Invalid email or password".to_string()));
+            return Err(AppError::InvalidToken);
         }
 
         // Check if MFA is required
@@ -87,7 +86,7 @@ impl AuthService {
 
                 if !is_valid {
                     tracing::warn!(email = %email.as_str(), "Invalid TOTP code");
-                    return Err(AppError::Unauthorized("Invalid TOTP code".to_string()));
+                    return Err(AppError::InvalidToken);
                 }
             } else {
                 // MFA required but not provided
@@ -113,7 +112,7 @@ impl AuthService {
             .map_err(|e| AppError::ValidationError(format!("Invalid role: {}", e)))?;
 
         // Generate tokens
-        let access_token = self.jwt_manager.generate_access_token(user_id, tenant_id, role)?;
+        let access_token = self.jwt_manager.generate_access_token(user_id, tenant_id, role.clone())?;
         let refresh_token = self.jwt_manager.generate_refresh_token(user_id, tenant_id)?;
 
         // Create session
@@ -151,8 +150,14 @@ impl AuthService {
         // Verify refresh token
         let claims = self.jwt_manager.verify_refresh_token(&req.refresh_token)?;
 
-        let user_id = UserId::from_str(&claims.sub)?;
-        let tenant_id = TenantId::from_str(&claims.tenant_id)?;
+        let user_id = UserId::from_uuid(
+            uuid::Uuid::parse_str(&claims.sub)
+                .map_err(|_e| AppError::InvalidToken)?
+        );
+        let tenant_id = TenantId::from_uuid(
+            uuid::Uuid::parse_str(&claims.tenant_id)
+                .map_err(|_e| AppError::InvalidToken)?
+        );
 
         // Verify session exists
         let refresh_token_hash = Self::hash_token(&req.refresh_token);
@@ -168,16 +173,16 @@ impl AuthService {
         .fetch_optional(self.db.pool())
         .await
         .map_err(|e| AppError::DatabaseError(format!("Failed to get session: {}", e)))?
-        .ok_or_else(|| AppError::Unauthorized("Invalid refresh token".to_string()))?;
+        .ok_or_else(|| AppError::InvalidToken)?;
 
         let session = Session {
-            session_id: session_row.session_id,
+            session_id: session_row.session_id.to_string(),
             user_id: UserId::from_uuid(session_row.user_id),
             tenant_id: TenantId::from_uuid(session_row.tenant_id),
             refresh_token_hash: session_row.refresh_token_hash,
-            created_at: session_row.created_at.and_utc(),
-            expires_at: session_row.expires_at.and_utc(),
-            last_activity: session_row.last_activity.and_utc(),
+            created_at: session_row.created_at,
+            expires_at: session_row.expires_at,
+            last_activity: session_row.last_activity,
             ip_address: session_row.ip_address,
             user_agent: session_row.user_agent,
         };
@@ -225,10 +230,10 @@ impl AuthService {
         .fetch_optional(self.db.pool())
         .await
         .map_err(|e| AppError::DatabaseError(format!("Failed to get session: {}", e)))?
-        .ok_or_else(|| AppError::Unauthorized("Invalid refresh token".to_string()))?;
+        .ok_or_else(|| AppError::InvalidToken)?;
 
         // Delete session
-        self.session_manager.delete_session(&session.session_id).await?;
+        self.session_manager.delete_session(&session.session_id.to_string()).await?;
 
         tracing::info!(session_id = %session.session_id, "User logged out");
 
@@ -250,7 +255,7 @@ impl AuthService {
         .map_err(|e| AppError::DatabaseError(format!("Database query failed: {}", e)))?;
 
         if existing.is_some() {
-            return Err(AppError::Conflict("Email already registered".to_string()));
+            return Err(AppError::DuplicateResource("Email already registered".to_string()));
         }
 
         // Hash password

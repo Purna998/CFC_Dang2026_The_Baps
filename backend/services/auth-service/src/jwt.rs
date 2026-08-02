@@ -108,9 +108,9 @@ impl JwtManager {
             .map(|data| data.claims)
             .map_err(|e| match e.kind() {
                 jsonwebtoken::errors::ErrorKind::ExpiredSignature => {
-                    AppError::Unauthorized("Token has expired".to_string())
+                    AppError::TokenExpired
                 }
-                _ => AppError::Unauthorized(format!("Invalid token: {}", e)),
+                _ => AppError::InvalidToken,
             })
     }
 
@@ -123,9 +123,9 @@ impl JwtManager {
             .map(|data| data.claims)
             .map_err(|e| match e.kind() {
                 jsonwebtoken::errors::ErrorKind::ExpiredSignature => {
-                    AppError::Unauthorized("Refresh token has expired".to_string())
+                    AppError::TokenExpired
                 }
-                _ => AppError::Unauthorized(format!("Invalid refresh token: {}", e)),
+                _ => AppError::InvalidToken,
             })
     }
 }

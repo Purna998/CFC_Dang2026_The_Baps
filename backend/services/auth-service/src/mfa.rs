@@ -18,8 +18,7 @@ impl MfaManager {
     /// Generate a QR code URL for TOTP setup
     pub fn generate_qr_code_url(secret: &str, email: &str, issuer: &str) -> Result<String> {
         let totp = Self::create_totp(secret, email, issuer)?;
-        totp.get_qr_base64()
-            .map_err(|e| AppError::InternalError(format!("Failed to generate QR code: {}", e)))
+        Ok(totp.get_url())
     }
 
     /// Verify a TOTP code

@@ -28,6 +28,10 @@ tracing = { workspace = true }
 chrono = { workspace = true }
 uuid = { workspace = true }
 
+# HTTP Client for blockchain service
+reqwest = { workspace = true }
+hex = { workspace = true }
+
 # Internal dependencies
 eemp-domain = { path = "../../shared/domain" }
 eemp-error = { path = "../../shared/error" }

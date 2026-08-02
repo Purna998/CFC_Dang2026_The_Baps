@@ -200,27 +200,30 @@ impl fmt::Display for CandidateId {
 
 /// Email address value object with validation
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, Validate)]
-pub struct Email(#[validate(email)] String);
+pub struct Email {
+    #[validate(email)]
+    value: String,
+}
 
 impl Email {
     pub fn new(email: String) -> Result<Self, validator::ValidationErrors> {
-        let email_obj = Self(email);
+        let email_obj = Self { value: email };
         email_obj.validate()?;
         Ok(email_obj)
     }
 
     pub fn as_str(&self) -> &str {
-        &self.0
+        &self.value
     }
 
     pub fn into_string(self) -> String {
-        self.0
+        self.value
     }
 }
 
 impl fmt::Display for Email {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{}", self.0)
+        write!(f, "{}", self.value)
     }
 }
 
@@ -236,11 +239,14 @@ impl TryFrom<String> for Email {
 ///
 /// NEVER store this type - always hash with Argon2id before storage.
 #[derive(Debug, Clone, Validate)]
-pub struct Password(#[validate(length(min = 8))] String);
+pub struct Password {
+    #[validate(length(min = 8))]
+    value: String,
+}
 
 impl Password {
     pub fn new(password: String) -> Result<Self, validator::ValidationErrors> {
-        let password_obj = Self(password);
+        let password_obj = Self { value: password };
         password_obj.validate()?;
 
         // Additional password policy validation
@@ -250,11 +256,11 @@ impl Password {
     }
 
     pub fn as_str(&self) -> &str {
-        &self.0
+        &self.value
     }
 
     pub fn into_string(self) -> String {
-        self.0
+        self.value
     }
 }
 

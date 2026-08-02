@@ -1,5 +1,6 @@
 //! Key generation and management
 
+use base64::{engine::general_purpose, Engine as _};
 use eemp_error::{AppError, Result};
 use rand::RngCore;
 use serde::{Deserialize, Serialize};
@@ -42,12 +43,12 @@ impl EncryptionKey {
 
     /// Serialize key to base64 (for secure storage)
     pub fn to_base64(&self) -> String {
-        base64::encode(&self.key_bytes)
+        general_purpose::STANDARD.encode(&self.key_bytes)
     }
 
     /// Deserialize key from base64
     pub fn from_base64(key_id: Uuid, b64: &str) -> Result<Self> {
-        let bytes = base64::decode(b64)
+        let bytes = general_purpose::STANDARD.decode(b64)
             .map_err(|e| AppError::ValidationError(format!("Invalid base64 key: {}", e)))?;
 
         if bytes.len() != 32 {

@@ -6,8 +6,8 @@
 //! - Parallelism: 1 thread
 
 use argon2::{
-    password_hash::{rand_core::OsRng, PasswordHash, PasswordHasher, PasswordVerifier, SaltString},
-    Argon2, ParamsBuilder,
+    password_hash::{rand_core::OsRng, PasswordHash, PasswordHasher as Argon2PasswordHasher, PasswordVerifier, SaltString},
+    Argon2,
 };
 use eemp_config::SecurityConfig;
 use eemp_domain::{Password, PasswordHash as DomainPasswordHash};
@@ -20,16 +20,12 @@ pub struct PasswordHasher {
 impl PasswordHasher {
     /// Create a new password hasher with security config
     pub fn new(config: &SecurityConfig) -> Result<Self> {
-        let mut params_builder = ParamsBuilder::new();
-        params_builder
-            .m_cost(config.argon2_memory_cost)
-            .t_cost(config.argon2_time_cost)
-            .p_cost(config.argon2_parallelism)
-            .map_err(|e| AppError::InternalError(format!("Invalid Argon2 parameters: {}", e)))?;
-
-        let params = params_builder
-            .params()
-            .map_err(|e| AppError::InternalError(format!("Failed to build Argon2 params: {}", e)))?;
+        let params = argon2::Params::new(
+            config.argon2_memory_cost,
+            config.argon2_time_cost,
+            config.argon2_parallelism,
+            None
+        ).map_err(|e| AppError::InternalError(format!("Invalid Argon2 parameters: {}", e)))?;
 
         let argon2 = Argon2::new(argon2::Algorithm::Argon2id, argon2::Version::V0x13, params);
 
@@ -44,7 +40,7 @@ impl PasswordHasher {
             .hash_password(password.as_str().as_bytes(), &salt)
             .map_err(|e| AppError::InternalError(format!("Password hashing failed: {}", e)))?;
 
-        Ok(DomainPasswordHash::new(password_hash.to_string())?)
+        Ok(DomainPasswordHash::new(password_hash.to_string()))
     }
 
     /// Verify a password against its hash

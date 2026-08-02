@@ -58,7 +58,7 @@ impl VotingRepository {
         .await
         .map_err(|e| {
             if e.to_string().contains("unique") {
-                AppError::Conflict("You have already voted in this election".to_string())
+                AppError::AlreadyVoted
             } else {
                 AppError::DatabaseError(format!("Failed to store ballot: {}", e))
             }
@@ -109,8 +109,8 @@ impl VotingRepository {
             voter_receipt_code: r.voter_receipt_code,
             ip_address: r.ip_address,
             user_agent: r.user_agent,
-            cast_at: r.cast_at.and_utc(),
-            verified_at: r.verified_at.map(|dt| dt.and_utc()),
+            cast_at: r.cast_at,
+            verified_at: r.verified_at,
         }))
     }
 
@@ -163,8 +163,8 @@ impl VotingRepository {
             voter_receipt_code: r.voter_receipt_code,
             ip_address: r.ip_address,
             user_agent: r.user_agent,
-            cast_at: r.cast_at.and_utc(),
-            verified_at: r.verified_at.map(|dt| dt.and_utc()),
+            cast_at: r.cast_at,
+            verified_at: r.verified_at,
         }))
     }
 

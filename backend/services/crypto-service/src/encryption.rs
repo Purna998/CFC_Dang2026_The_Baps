@@ -1,9 +1,10 @@
 //! AES-256-GCM encryption for ballot data
 
 use aes_gcm::{
-    aead::{Aead, KeyInit, OsRng},
+    aead::{Aead, AeadCore, KeyInit, OsRng},
     Aes256Gcm, Nonce,
 };
+use base64::{engine::general_purpose, Engine as _};
 use eemp_error::{AppError, Result};
 use serde::{Deserialize, Serialize};
 
@@ -97,8 +98,8 @@ pub fn decrypt_ballot(encrypted: &EncryptedData, key: &[u8; 32]) -> Result<Vec<u
 /// Serialize encrypted data to base64 for storage
 pub fn serialize_encrypted(encrypted: &EncryptedData) -> String {
     let json = serde_json::json!({
-        "ciphertext": base64::encode(&encrypted.ciphertext),
-        "nonce": base64::encode(&encrypted.nonce),
+        "ciphertext": general_purpose::STANDARD.encode(&encrypted.ciphertext),
+        "nonce": general_purpose::STANDARD.encode(&encrypted.nonce),
     });
     json.to_string()
 }
@@ -118,10 +119,10 @@ pub fn deserialize_encrypted(data: &str) -> Result<EncryptedData> {
         .and_then(|v| v.as_str())
         .ok_or_else(|| AppError::ValidationError("Missing nonce".to_string()))?;
 
-    let ciphertext = base64::decode(ciphertext_b64)
+    let ciphertext = general_purpose::STANDARD.decode(ciphertext_b64)
         .map_err(|e| AppError::ValidationError(format!("Invalid ciphertext base64: {}", e)))?;
 
-    let nonce = base64::decode(nonce_b64)
+    let nonce = general_purpose::STANDARD.decode(nonce_b64)
         .map_err(|e| AppError::ValidationError(format!("Invalid nonce base64: {}", e)))?;
 
     Ok(EncryptedData { ciphertext, nonce })

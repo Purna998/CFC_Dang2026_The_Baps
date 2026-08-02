@@ -75,7 +75,7 @@ impl SessionManager {
         let session_json = serde_json::to_string(&session)
             .map_err(|e| AppError::InternalError(format!("Session serialization failed: {}", e)))?;
 
-        conn.set_ex(
+        conn.set_ex::<_, _, ()>(
             format!("session:{}", session_id),
             session_json,
             ttl_seconds as u64,
@@ -84,6 +84,9 @@ impl SessionManager {
         .map_err(|e| AppError::InternalError(format!("Failed to store session in Redis: {}", e)))?;
 
         // Store in PostgreSQL for persistence and audit trail
+        let session_uuid = Uuid::parse_str(&session_id)
+            .map_err(|e| AppError::InternalError(format!("Invalid session UUID: {}", e)))?;
+
         sqlx::query!(
             r#"
             INSERT INTO sessions (
@@ -92,7 +95,7 @@ impl SessionManager {
             )
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
             "#,
-            session_id,
+            session_uuid,
             user_id.as_uuid(),
             tenant_id.as_uuid(),
             refresh_token_hash,
@@ -136,6 +139,9 @@ impl SessionManager {
         }
 
         // Fallback to PostgreSQL (slow path)
+        let session_uuid = Uuid::parse_str(session_id)
+            .map_err(|e| AppError::InternalError(format!("Invalid session UUID: {}", e)))?;
+
         let row = sqlx::query!(
             r#"
             SELECT session_id, user_id, tenant_id, refresh_token_hash,
@@ -143,20 +149,20 @@ impl SessionManager {
             FROM sessions
             WHERE session_id = $1 AND expires_at > NOW()
             "#,
-            session_id
+            session_uuid
         )
         .fetch_optional(&self.db_pool)
         .await
         .map_err(|e| AppError::DatabaseError(format!("Failed to get session from database: {}", e)))?;
 
         Ok(row.map(|r| Session {
-            session_id: r.session_id,
+            session_id: r.session_id.to_string(),
             user_id: UserId::from_uuid(r.user_id),
             tenant_id: TenantId::from_uuid(r.tenant_id),
             refresh_token_hash: r.refresh_token_hash,
-            created_at: r.created_at.and_utc(),
-            expires_at: r.expires_at.and_utc(),
-            last_activity: r.last_activity.and_utc(),
+            created_at: r.created_at,
+            expires_at: r.expires_at,
+            last_activity: r.last_activity,
             ip_address: r.ip_address,
             user_agent: r.user_agent,
         }))
@@ -165,12 +171,14 @@ impl SessionManager {
     /// Update session last activity
     pub async fn update_last_activity(&self, session_id: &str) -> Result<()> {
         let now = Utc::now();
+        let session_uuid = Uuid::parse_str(session_id)
+            .map_err(|e| AppError::InternalError(format!("Invalid session UUID: {}", e)))?;
 
         // Update in PostgreSQL
         sqlx::query!(
             "UPDATE sessions SET last_activity = $1 WHERE session_id = $2",
             now,
-            session_id
+            session_uuid
         )
         .execute(&self.db_pool)
         .await
@@ -181,6 +189,9 @@ impl SessionManager {
 
     /// Delete a session (logout)
     pub async fn delete_session(&self, session_id: &str) -> Result<()> {
+        let session_uuid = Uuid::parse_str(session_id)
+            .map_err(|e| AppError::InternalError(format!("Invalid session UUID: {}", e)))?;
+
         // Delete from Redis
         let mut conn = self
             .redis
@@ -188,14 +199,14 @@ impl SessionManager {
             .await
             .map_err(|e| AppError::InternalError(format!("Redis connection failed: {}", e)))?;
 
-        conn.del(format!("session:{}", session_id))
+        conn.del::<_, ()>(format!("session:{}", session_id))
             .await
             .map_err(|e| AppError::InternalError(format!("Failed to delete session from Redis: {}", e)))?;
 
         // Mark as revoked in PostgreSQL (keep for audit trail)
         sqlx::query!(
             "UPDATE sessions SET expires_at = NOW() WHERE session_id = $1",
-            session_id
+            session_uuid
         )
         .execute(&self.db_pool)
         .await
@@ -225,7 +236,7 @@ impl SessionManager {
             .map_err(|e| AppError::InternalError(format!("Redis connection failed: {}", e)))?;
 
         for row in rows {
-            conn.del(format!("session:{}", row.session_id))
+            conn.del::<_, ()>(format!("session:{}", row.session_id))
                 .await
                 .map_err(|e| AppError::InternalError(format!("Failed to delete session from Redis: {}", e)))?;
         }

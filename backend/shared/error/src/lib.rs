@@ -12,7 +12,6 @@ use axum::{
     Json,
 };
 use serde::{Deserialize, Serialize};
-use std::fmt;
 
 /// Standard API error response format
 ///
@@ -145,8 +144,8 @@ pub enum AppError {
     RateLimitExceeded,
 
     // Server Errors (500, 503)
-    #[error("Internal server error")]
-    InternalError,
+    #[error("Internal server error: {0}")]
+    InternalError(String),
 
     #[error("Database error: {0}")]
     DatabaseError(String),
@@ -199,7 +198,7 @@ impl AppError {
             Self::RateLimitExceeded => StatusCode::TOO_MANY_REQUESTS,
 
             // 500 Internal Server Error
-            Self::InternalError | Self::DatabaseError(_) | Self::External(_) => {
+            Self::InternalError(_) | Self::DatabaseError(_) | Self::External(_) => {
                 StatusCode::INTERNAL_SERVER_ERROR
             }
 
@@ -244,7 +243,7 @@ impl AppError {
             Self::RateLimitExceeded => "rate_limit_exceeded",
 
             // Server
-            Self::InternalError => "internal_error",
+            Self::InternalError(_) => "internal_error",
             Self::DatabaseError(_) => "database_error",
             Self::BlockchainError(_) => "blockchain_error",
             Self::ServiceUnavailable => "service_unavailable",
@@ -390,7 +389,7 @@ mod tests {
         );
         assert_eq!(AppError::AlreadyVoted.status_code(), StatusCode::UNPROCESSABLE_ENTITY);
         assert_eq!(AppError::RateLimitExceeded.status_code(), StatusCode::TOO_MANY_REQUESTS);
-        assert_eq!(AppError::InternalError.status_code(), StatusCode::INTERNAL_SERVER_ERROR);
+        assert_eq!(AppError::InternalError("test".into()).status_code(), StatusCode::INTERNAL_SERVER_ERROR);
     }
 
     #[test]

@@ -12,5 +12,7 @@ pub mod models;
 pub mod repository;
 pub mod service;
 pub mod eligibility;
+pub mod blockchain_client;
 
 pub use service::VotingService;
+pub use blockchain_client::BlockchainClient;

@@ -18,7 +18,7 @@ pub async fn verify_voter_eligibility(
     .fetch_optional(db.pool())
     .await
     .map_err(|e| AppError::DatabaseError(format!("Failed to get election status: {}", e)))?
-    .ok_or_else(|| AppError::NotFound("Election not found".to_string()))?;
+    .ok_or_else(|| AppError::ResourceNotFound("Election not found".to_string()))?;
 
     if election_status != "Open" {
         return Err(AppError::ValidationError(
@@ -38,9 +38,7 @@ pub async fn verify_voter_eligibility(
     .unwrap_or(false);
 
     if has_voted {
-        return Err(AppError::Conflict(
-            "You have already voted in this election".to_string(),
-        ));
+        return Err(AppError::AlreadyVoted);
     }
 
     // Check eligibility rules (simplified - in production, check against eligibility_rules table)
@@ -52,10 +50,10 @@ pub async fn verify_voter_eligibility(
     .fetch_optional(db.pool())
     .await
     .map_err(|e| AppError::DatabaseError(format!("Failed to get user status: {}", e)))?
-    .ok_or_else(|| AppError::NotFound("User not found".to_string()))?;
+    .ok_or_else(|| AppError::ResourceNotFound("User not found".to_string()))?;
 
     if !user_is_active {
-        return Err(AppError::Forbidden(
+        return Err(AppError::InsufficientPermissions(
             "User account is not active".to_string(),
         ));
     }
@@ -72,11 +70,11 @@ pub async fn verify_voting_time(db: &Database, election_id: ElectionId) -> Resul
     .fetch_optional(db.pool())
     .await
     .map_err(|e| AppError::DatabaseError(format!("Failed to get election: {}", e)))?
-    .ok_or_else(|| AppError::NotFound("Election not found".to_string()))?;
+    .ok_or_else(|| AppError::ResourceNotFound("Election not found".to_string()))?;
 
     let now = chrono::Utc::now();
-    let start = election.voting_start_time.and_utc();
-    let end = election.voting_end_time.and_utc();
+    let start = election.voting_start_time;
+    let end = election.voting_end_time;
 
     if now < start {
         return Err(AppError::ValidationError(

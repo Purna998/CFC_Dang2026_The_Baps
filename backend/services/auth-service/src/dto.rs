@@ -1,6 +1,6 @@
 //! Data Transfer Objects (DTOs) for authentication
 
-use eemp_domain::{Email, TenantId, UserId};
+use eemp_domain::{TenantId, UserId};
 use serde::{Deserialize, Serialize};
 use validator::Validate;
 
